@@ -619,21 +619,34 @@ valor do aparelho; onde diz um número, use `min(número, n_max)`.
 
 | Nv | n | Palavras | Letras | Direções | Cruz. | Enchimento | Léxico | Faixa D |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 9 | 8 | 5–8 | → ↓ | 0% | uniforme | 1 | 0–14 |
-| 2 | 9 | 8 | 5–8 | → ↓ | 10% | uniforme | 1 | 8–22 |
-| 3 | 9 | 8 | 4–8 | → ↓ ← ↑ | 15% | frequência | 1 | 16–30 |
-| 4 | 10 | 9 | 4–8 | → ↓ ← ↑ | 20% | frequência | 1–2 | 24–38 |
-| 5 | 10 | 9 | 4–8 | + ↘ ↗ | 25% | frequência | 1–2 | 32–46 |
-| 6 | 10 | 9 | 4–8 | + ↘ ↗ | 30% | frequência | 2 | 40–54 |
-| 7 | 10 | 10 | 4–7 | + ↘ ↗ | 35% | adversário leve | 2 | 47–61 |
-| 8 | 10 | 10 | 4–7 | todas as 8 | 40% | adversário leve | 2 | 54–68 |
-| 9 | n_max | 10 | 4–7 | todas as 8 | 45% | adversário | 2–3 | 61–75 |
-| 10 | n_max | 10 | 4–6 | todas as 8 | 50% | adversário | 3 | 68–82 |
-| 11 | n_max | 10 | 4–6 | todas as 8 | 55% | adversário | 3 | 75–89 |
-| 12 | n_max | 10 | 4–6 | todas as 8 | 60% | adversário | 3 | 82–100 |
+| 1 | 9 | 8 | 5–8 | → ↓ | 0% | uniforme | 1 | 0–21 |
+| 2 | 9 | 8 | 5–8 | → ↓ | 10% | uniforme | 1 | 8–29 |
+| 3 | 9 | 8 | 4–8 | → ↓ ← ↑ | 15% | frequência | 1 | 11–33 |
+| 4 | 10 | 9 | 4–8 | → ↓ ← ↑ | 20% | frequência | 1–2 | 18–37 |
+| 5 | 10 | 9 | 4–8 | + ↘ ↗ | 25% | frequência | 1–2 | 29–49 |
+| 6 | 10 | 9 | 4–8 | + ↘ ↗ | 30% | frequência | 2 | 32–52 |
+| 7 | 10 | 10 | 4–7 | + ↘ ↗ | 35% | adversário leve | 2 | 42–63 |
+| 8 | 10 | 10 | 4–7 | todas as 8 | 40% | adversário leve | 2 | 44–67 |
+| 9 | 11 | 10 | 4–7 | todas as 8 | 45% | adversário | 2–3 | 64–80 |
+| 10 | 11 | 10 | 4–6 | todas as 8 | 50% | adversário | 3 | 65–83 |
+| 11 | 11 | 10 | 4–6 | todas as 8 | 55% | adversário | 3 | 66–85 |
+| 12 | 11 | 10 | 4–6 | todas as 8 | 60% | adversário | 3 | 67–86 |
 
 A partir do nível 5, um par de **vizinhas lexicais** é injetado quando existir
 no banco; a partir do 9, dois pares.
+
+> **As faixas de `D` acima foram recalibradas contra o gerador real** (medição
+> de 800 sementes por nível, faixa = percentil 0,5 a 99,5). As faixas do
+> planejamento original eram inalcançáveis por construção: `D = 100` exigiria
+> `n = 14`, que o piso de célula de 30 px proíbe num celular de 412 px (§2.2).
+> O teto observado é `D ≈ 86`. A ordem e a distância entre os níveis foram
+> preservadas; o que mudou foi a escala.
+>
+> **Os níveis 10, 11 e 12 são muito parecidos entre si** — pela própria tabela
+> acima, só a meta de cruzamentos os distingue (50%, 55%, 60%). As medianas
+> medidas ficam em 73, 76 e 75. Se o topo da escada precisar de mais separação
+> depois da Fase 10, a alavanca com folga é o comprimento das palavras
+> (`4–6` → `4–5` no nível 12).
 
 ### 6.3 A escada sobe **e desce**
 
@@ -1140,10 +1153,39 @@ O app está pronto quando, num celular real de 6,5" em retrato:
 
 ## 17. Situação atual
 
-Planejamento concluído. Nenhuma fase iniciada.
+**Fases 0 a 9 implementadas e publicadas** em
+`https://eldergithub.github.io/caca_palavras/`, a partir de
+`https://github.com/eldergithub/caca_palavras`.
 
-Repositório de hospedagem já criado:
-`https://github.com/eldergithub/caca_palavras` — ainda vazio.
-Endereço final previsto: `https://eldergithub.github.io/caca_palavras/`.
+Uma revisão do código inteiro (Fase 8) encontrou e corrigiu, entre outros:
 
-**Próximo passo: Fase 0.**
+- Restaurar a partida salva reconstruía **um tabuleiro diferente**: forçar o
+  tema pulava um sorteio do PRNG e deslocava toda a sequência. Critério de
+  aceite nº 10 estava quebrado.
+- Três alavancas de §6.1 não funcionavam: as vizinhas lexicais só eram
+  procuradas dentro do tema sorteado, a abstração do tema não acompanhava o
+  nível, e o enchimento adversário otimizava algo diferente do que `f_ench`
+  mede. O nível 1 vinha com metade das palavras cruzando, contra os 0% da
+  tabela.
+- O validador independente (§7.5) existia mas **nunca era chamado pelo jogo** —
+  só pelos testes.
+- Os botões de baixo saíam da tela num aparelho de 360 × 640.
+- JOGO NOVO com metade das palavras achadas disparava a comemoração de vitória.
+
+Também foram removidas as camadas que contrariavam decisões fechadas deste
+documento e que tinham entrado numa reformulação de interface: som (§2, §9.6),
+esteira de fases visível (§2, §5.5, §12), tela de instruções (§2, §5.7),
+contador e barra de progresso (§5.5), e tempo e dicas na tela de vitória
+(§5.5, §8).
+
+**Pendências conhecidas:**
+
+1. `public/fontes/letras.woff2` está **vazio** (0 byte). A fonte
+   auto-hospedada de §9.5 ainda precisa ser produzida; até lá o jogo usa a
+   pilha de reserva do sistema.
+2. O banco tem duas cópias (`tools/monta-banco.mjs` gera
+   `public/palavras/*.json` e `src/core/dados-banco.js`). Um teste confere que
+   continuam idênticas, mas ampliar o banco exige rodar o gerador.
+
+**Próximo passo: Fase 10** — observar ela jogando e afinar `LIMIAR_DE_ARRASTO`,
+`TOLERANCIA_PONTA` e as medianas da escada.

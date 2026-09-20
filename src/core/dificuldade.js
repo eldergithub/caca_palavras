@@ -22,73 +22,73 @@ export const PARAMETROS_NIVEIS = {
     nPadrao: 9, qtdPalavras: 8, tamMin: 5, tamMax: 8,
     direcoes: ['L', 'S'],
     metaCruzamentos: 0.0, enchimento: 'uniforme', lexicoMin: 1, lexicoMax: 1,
-    faixaD: [0, 18], vizinhasPares: 0, medianaSegundos: 120
+    faixaD: [0, 21], vizinhasPares: 0, medianaSegundos: 120
   },
   2: {
     nPadrao: 9, qtdPalavras: 8, tamMin: 5, tamMax: 8,
     direcoes: ['L', 'S'],
     metaCruzamentos: 0.10, enchimento: 'uniforme', lexicoMin: 1, lexicoMax: 1,
-    faixaD: [8, 24], vizinhasPares: 0, medianaSegundos: 140
+    faixaD: [8, 29], vizinhasPares: 0, medianaSegundos: 140
   },
   3: {
     nPadrao: 9, qtdPalavras: 8, tamMin: 4, tamMax: 8,
     direcoes: ['L', 'S', 'O', 'N'],
     metaCruzamentos: 0.15, enchimento: 'frequencia', lexicoMin: 1, lexicoMax: 1,
-    faixaD: [15, 32], vizinhasPares: 0, medianaSegundos: 160
+    faixaD: [11, 33], vizinhasPares: 0, medianaSegundos: 160
   },
   4: {
     nPadrao: 10, qtdPalavras: 9, tamMin: 4, tamMax: 8,
     direcoes: ['L', 'S', 'O', 'N'],
     metaCruzamentos: 0.20, enchimento: 'frequencia', lexicoMin: 1, lexicoMax: 2,
-    faixaD: [22, 40], vizinhasPares: 0, medianaSegundos: 180
+    faixaD: [18, 37], vizinhasPares: 0, medianaSegundos: 180
   },
   5: {
     nPadrao: 10, qtdPalavras: 9, tamMin: 4, tamMax: 8,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NE'],
     metaCruzamentos: 0.25, enchimento: 'frequencia', lexicoMin: 1, lexicoMax: 2,
-    faixaD: [30, 48], vizinhasPares: 1, medianaSegundos: 210
+    faixaD: [29, 49], vizinhasPares: 1, medianaSegundos: 210
   },
   6: {
     nPadrao: 10, qtdPalavras: 9, tamMin: 4, tamMax: 8,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NE'],
     metaCruzamentos: 0.30, enchimento: 'frequencia', lexicoMin: 1, lexicoMax: 2,
-    faixaD: [38, 56], vizinhasPares: 1, medianaSegundos: 240
+    faixaD: [32, 52], vizinhasPares: 1, medianaSegundos: 240
   },
   7: {
     nPadrao: 10, qtdPalavras: 10, tamMin: 4, tamMax: 7,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NE'],
     metaCruzamentos: 0.35, enchimento: 'adversario_leve', lexicoMin: 2, lexicoMax: 2,
-    faixaD: [45, 64], vizinhasPares: 1, medianaSegundos: 270
+    faixaD: [42, 63], vizinhasPares: 1, medianaSegundos: 270
   },
   8: {
     nPadrao: 10, qtdPalavras: 10, tamMin: 4, tamMax: 7,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NO', 'SO', 'NE'],
     metaCruzamentos: 0.40, enchimento: 'adversario_leve', lexicoMin: 2, lexicoMax: 2,
-    faixaD: [52, 70], vizinhasPares: 1, medianaSegundos: 300
+    faixaD: [44, 67], vizinhasPares: 1, medianaSegundos: 300
   },
   9: {
     nPadrao: 11, qtdPalavras: 10, tamMin: 4, tamMax: 7,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NO', 'SO', 'NE'],
     metaCruzamentos: 0.45, enchimento: 'adversario', lexicoMin: 2, lexicoMax: 3,
-    faixaD: [59, 78], vizinhasPares: 2, medianaSegundos: 330
+    faixaD: [64, 80], vizinhasPares: 2, medianaSegundos: 330
   },
   10: {
     nPadrao: 11, qtdPalavras: 10, tamMin: 4, tamMax: 6,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NO', 'SO', 'NE'],
     metaCruzamentos: 0.50, enchimento: 'adversario', lexicoMin: 3, lexicoMax: 3,
-    faixaD: [66, 85], vizinhasPares: 2, medianaSegundos: 360
+    faixaD: [65, 83], vizinhasPares: 2, medianaSegundos: 360
   },
   11: {
     nPadrao: 11, qtdPalavras: 10, tamMin: 4, tamMax: 6,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NO', 'SO', 'NE'],
     metaCruzamentos: 0.55, enchimento: 'adversario', lexicoMin: 3, lexicoMax: 3,
-    faixaD: [73, 92], vizinhasPares: 2, medianaSegundos: 400
+    faixaD: [66, 85], vizinhasPares: 2, medianaSegundos: 400
   },
   12: {
     nPadrao: 11, qtdPalavras: 10, tamMin: 4, tamMax: 6,
     direcoes: ['L', 'S', 'O', 'N', 'SE', 'NO', 'SO', 'NE'],
     metaCruzamentos: 0.60, enchimento: 'adversario', lexicoMin: 3, lexicoMax: 3,
-    faixaD: [80, 100], vizinhasPares: 2, medianaSegundos: 450
+    faixaD: [67, 86], vizinhasPares: 2, medianaSegundos: 450
   }
 };
 

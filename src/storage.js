@@ -1,12 +1,14 @@
 // src/storage.js
 // Persistência local resiliente em localStorage (§7.6, §11.3, §11.4).
-// Isolamento completo de erros: corrupção ou falha resulta em descarte silencioso sem travar.
+// Qualquer corrupção resulta em descarte silencioso: ela nunca vê erro.
 
 const CHAVE_PARTIDA = 'cp_partida_v1';
 const CHAVE_ESCADA = 'cp_escada_v1';
 const CHAVE_STATS = 'cp_stats_v1';
 const CHAVE_AJUSTES = 'cp_ajustes_v1';
-const CHAVE_FASES = 'cp_fases_v1';
+
+const STATS_PADRAO = { concluidas: 0, ensinoConcluido: false, indiceTema: 0 };
+const AJUSTES_PADRAO = { deltaCelulaPx: 0 };
 
 export function salvarPartida(partida) {
   try {
@@ -23,108 +25,91 @@ export function salvarPartida(partida) {
       encontradas: partida.encontradas,
       dicasUsadas: partida.dicasUsadas || 0,
       degrausDicas: partida.degrausDicas || {},
-      iniciadaEm: partida.iniciadaEm || Date.now()
+      iniciadaEm: partida.iniciadaEm || Date.now(),
     };
     localStorage.setItem(CHAVE_PARTIDA, JSON.stringify(payload));
   } catch {
-    // Falhas de cota ou navegação anônima são ignoradas silenciosamente
+    // Cota cheia ou navegação anônima: ignorado em silêncio
   }
 }
 
+// Carregamento resiliente (§7.6): JSON quebrado, versão diferente ou estrutura
+// inesperada -> descarta e começa partida nova.
 export function carregarPartida() {
   try {
     const raw = localStorage.getItem(CHAVE_PARTIDA);
     if (!raw) return null;
+
     const dados = JSON.parse(raw);
-    if (!dados || dados.v !== 1 || !dados.semente || !dados.n || !dados.nivel) {
+    const estruturaValida = dados
+      && dados.v === 1
+      && Number.isFinite(dados.semente)
+      && Number.isFinite(dados.n)
+      && Number.isFinite(dados.nivel)
+      && typeof dados.tema === 'string'
+      && Array.isArray(dados.encontradas);
+
+    if (!estruturaValida) {
       localStorage.removeItem(CHAVE_PARTIDA);
       return null;
     }
     return dados;
   } catch {
-    localStorage.removeItem(CHAVE_PARTIDA);
+    try { localStorage.removeItem(CHAVE_PARTIDA); } catch {}
     return null;
   }
 }
 
 export function limparPartidaSalva() {
-  try {
-    localStorage.removeItem(CHAVE_PARTIDA);
-  } catch {}
+  try { localStorage.removeItem(CHAVE_PARTIDA); } catch {}
 }
 
 export function salvarEscada(escada) {
-  try {
-    localStorage.setItem(CHAVE_ESCADA, JSON.stringify(escada));
-  } catch {}
+  try { localStorage.setItem(CHAVE_ESCADA, JSON.stringify(escada)); } catch {}
 }
 
 export function carregarEscada() {
   try {
     const raw = localStorage.getItem(CHAVE_ESCADA);
     if (!raw) return null;
-    return JSON.parse(raw);
+    const dados = JSON.parse(raw);
+    if (!dados || !Number.isFinite(dados.nivel)) return null;
+    return dados;
   } catch {
     return null;
   }
 }
 
-export function salvarProgressoFases(dadosFases) {
-  try {
-    localStorage.setItem(CHAVE_FASES, JSON.stringify(dadosFases));
-  } catch {}
-}
-
-export function carregarProgressoFases() {
-  try {
-    const raw = localStorage.getItem(CHAVE_FASES);
-    if (!raw) return { faseAtual: 1, maxFaseDesbloqueada: 1 };
-    const parsed = JSON.parse(raw);
-    return {
-      faseAtual: Math.max(1, Math.min(12, Number(parsed?.faseAtual || 1))),
-      maxFaseDesbloqueada: Math.max(1, Math.min(12, Number(parsed?.maxFaseDesbloqueada || 1)))
-    };
-  } catch {
-    return { faseAtual: 1, maxFaseDesbloqueada: 1 };
-  }
-}
-
 export function salvarStats(stats) {
-  try {
-    localStorage.setItem(CHAVE_STATS, JSON.stringify(stats));
-  } catch {}
+  try { localStorage.setItem(CHAVE_STATS, JSON.stringify(stats)); } catch {}
 }
 
 export function carregarStats() {
   try {
     const raw = localStorage.getItem(CHAVE_STATS);
-    if (!raw) return { concluidas: 0, ensinoConcluido: false };
+    if (!raw) return { ...STATS_PADRAO };
     const parsed = JSON.parse(raw);
     return {
-      concluidas: Number(parsed?.concluidas || 0),
-      ensinoConcluido: Boolean(parsed?.ensinoConcluido)
+      concluidas: Number(parsed?.concluidas) || 0,
+      ensinoConcluido: Boolean(parsed?.ensinoConcluido),
+      indiceTema: Number(parsed?.indiceTema) || 0,
     };
   } catch {
-    return { concluidas: 0, ensinoConcluido: false };
+    return { ...STATS_PADRAO };
   }
 }
 
 export function salvarAjustes(ajustes) {
-  try {
-    localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes));
-  } catch {}
+  try { localStorage.setItem(CHAVE_AJUSTES, JSON.stringify(ajustes)); } catch {}
 }
 
 export function carregarAjustes() {
   try {
     const raw = localStorage.getItem(CHAVE_AJUSTES);
-    if (!raw) return { deltaFontePx: 0, somAtivo: true };
+    if (!raw) return { ...AJUSTES_PADRAO };
     const parsed = JSON.parse(raw);
-    return {
-      deltaFontePx: Number(parsed?.deltaFontePx || 0),
-      somAtivo: parsed?.somAtivo !== false
-    };
+    return { deltaCelulaPx: Number(parsed?.deltaCelulaPx) || 0 };
   } catch {
-    return { deltaFontePx: 0, somAtivo: true };
+    return { ...AJUSTES_PADRAO };
   }
 }

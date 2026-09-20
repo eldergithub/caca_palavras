@@ -50,8 +50,11 @@ export function processarFimDePartida(estadoEscada, dadosPartida) {
 
   const direcao = classificarResultado(dadosPartida, medianaBase);
 
-  // Registro de tempos da jogadora (mantém no máximo as últimas 10)
-  if (!dadosPartida.abandonada && dadosPartida.segundos > 0) {
+  // Registro de tempos da jogadora (mantém no máximo as últimas 10).
+  // Só entra na mediana a partida que ela terminou de verdade: um tabuleiro
+  // largado pela metade não é uma amostra de "quanto tempo ela leva".
+  const concluida = dadosPartida.concluida ?? !dadosPartida.abandonada;
+  if (concluida && dadosPartida.segundos > 0) {
     const novosTempos = [...temposDoNivel, dadosPartida.segundos].slice(-10);
     estado.tempos[nivelAtual] = novosTempos;
   }
@@ -84,4 +87,13 @@ export function obterNivelEfetivo(estadoEscada) {
   const base = estadoEscada?.nivel ?? 1;
   const ajuste = estadoEscada?.ajusteManual ?? 0;
   return Math.max(1, Math.min(12, base + ajuste));
+}
+
+// Ajuste manual pela engrenagem (§5.4). O deslocamento é guardado relativo ao
+// nível aprendido pela escada e fica preso à faixa 1..12, para que o botão
+// nunca deixe de responder por ter acumulado ajuste fora do intervalo.
+export function ajustarNivelManualmente(estadoEscada, delta) {
+  const base = estadoEscada?.nivel ?? 1;
+  const alvo = Math.max(1, Math.min(12, obterNivelEfetivo(estadoEscada) + delta));
+  return { ...estadoEscada, ajusteManual: alvo - base };
 }

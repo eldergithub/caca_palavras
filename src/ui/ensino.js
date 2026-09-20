@@ -16,6 +16,10 @@ export function iniciarDedoFantasma(containerGrade, palavraColocada, configLayou
   const elDedo = document.createElement('div');
   elDedo.id = 'dedo-fantasma';
   elDedo.style.position = 'absolute';
+  // Sem left/top o elemento parte da posição de fluxo (abaixo da grade) e o
+  // translate abaixo o joga para fora do tabuleiro.
+  elDedo.style.left = '0';
+  elDedo.style.top = '0';
   elDedo.style.width = '44px';
   elDedo.style.height = '44px';
   elDedo.style.pointerEvents = 'none';
@@ -34,7 +38,38 @@ export function iniciarDedoFantasma(containerGrade, palavraColocada, configLayou
   containerGrade.appendChild(elDedo);
 
   let ativo = true;
-  let animando = false;
+
+  // §5.7: com prefers-reduced-motion ligado, o dedo aparece em três posições
+  // estáticas encadeadas em vez de deslizar.
+  const semMovimento = typeof window.matchMedia === 'function'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (semMovimento) {
+    const meio = palavraColocada.celulas[Math.floor(palavraColocada.celulas.length / 2)];
+    const posMeio = calcularCentroCelula(meio.l, meio.c, configLayout);
+    const paradas = [posInicio, posMeio, posFim];
+    let i = 0;
+
+    elDedo.style.transition = 'none';
+
+    const proximaParada = () => {
+      if (!ativo) return;
+      const p = paradas[i % paradas.length];
+      elDedo.style.transform = `translate(${p.x - 14}px, ${p.y - 10}px)`;
+      elDedo.style.opacity = '0.85';
+      i++;
+      setTimeout(proximaParada, 1100);
+    };
+
+    proximaParada();
+
+    return {
+      parar: () => {
+        ativo = false;
+        elDedo.remove();
+      },
+    };
+  }
 
   function animarPasso() {
     if (!ativo) return;

@@ -2,14 +2,11 @@
 // Gestão de botões, confirmações seguras por extenso e interceptação do botão Voltar (§5.4, §11.3).
 
 import { exibirDialogo } from './dialogo.js';
-import { abrirModalAjustes } from './ajustes.js';
-import { abrirModalInstrucoes } from './instrucoes.js';
-import { alternarSom, isSomAtivo } from './audio.js';
 
 export function configurarControles(elementos, contextoJogo) {
-  const { btnDica, btnNovo, btnSair, btnAjustes, btnInstrucoes, btnSom, iconeSom, camadaModal } = elementos;
+  const { btnDica, btnNovo, btnSair, btnAjustes, camadaModal } = elementos;
 
-  // 1. Botão DICA (§8)
+  // 1. Botão DICA (§8) — nunca oferecida sozinha, só quando ela pede
   btnDica.addEventListener('click', () => {
     contextoJogo.aoPedirDica();
   });
@@ -19,13 +16,13 @@ export function configurarControles(elementos, contextoJogo) {
     if (contextoJogo.temPartidaEmAndamento()) {
       exibirDialogo(camadaModal, {
         titulo: 'Começar outra partida?',
-        mensagem: 'A partida atual não foi finalizada.',
+        mensagem: 'A partida atual não foi terminada.',
         textoSeguro: 'Não, continuar esta', // Primeiro e em verde (§1.1, item 8)
         textoAcao: 'Sim, começar outro',
         onSeguro: () => {},
         onAcao: () => {
-          contextoJogo.aoIniciarNovoJogo(true); // abandonada = true se < metade
-        }
+          contextoJogo.aoIniciarNovoJogo(true);
+        },
       });
     } else {
       contextoJogo.aoIniciarNovoJogo(false);
@@ -33,7 +30,7 @@ export function configurarControles(elementos, contextoJogo) {
   });
 
   // 3. Botão SAIR (§5.4)
-  btnSair.addEventListener('click', () => {
+  function pedirConfirmacaoDeSaida() {
     exibirDialogo(camadaModal, {
       titulo: 'Sair do Caça-Palavras?',
       mensagem: 'Sua partida fica guardada para quando voltar.',
@@ -42,41 +39,39 @@ export function configurarControles(elementos, contextoJogo) {
       onSeguro: () => {},
       onAcao: () => {
         contextoJogo.aoSair();
-      }
-    });
-  });
-
-  // 4. Botão INSTRUÇÕES (Como Jogar)
-  if (btnInstrucoes) {
-    btnInstrucoes.addEventListener('click', () => {
-      abrirModalInstrucoes(camadaModal);
+      },
     });
   }
 
-  // 5. Botão SOM (Alternar áudio)
-  if (btnSom) {
-    btnSom.addEventListener('click', () => {
-      const novoEstado = alternarSom();
-      if (iconeSom) {
-        iconeSom.textContent = novoEstado ? '🔊' : '🔇';
-      }
-      if (contextoJogo.aoMudarSom) {
-        contextoJogo.aoMudarSom(novoEstado);
-      }
-    });
+  btnSair.addEventListener('click', pedirConfirmacaoDeSaida);
+
+  // 4. O botão "voltar" do Android abre essa mesma confirmação, nunca fecha direto (§5.4, §11.3)
+  function aoVoltarDoAndroid() {
+    history.pushState({ app: 'caca-palavras' }, '');
+    // Se já houver um diálogo aberto, o voltar apenas o fecha
+    if (camadaModal.style.display === 'flex') {
+      camadaModal.style.display = 'none';
+      camadaModal.innerHTML = '';
+      return;
+    }
+    pedirConfirmacaoDeSaida();
   }
 
-  // 6. Interceptação do botão Voltar do Android (§5.4, §11.3)
   try {
     history.pushState({ app: 'caca-palavras' }, '');
-    window.addEventListener('popstate', () => {
-      history.pushState({ app: 'caca-palavras' }, '');
-      btnSair.click();
-    });
+    window.addEventListener('popstate', aoVoltarDoAndroid);
   } catch {}
 
-  // 7. Engrenagem para o cuidador (§5.4)
+  // 5. Engrenagem para o cuidador (§5.4)
   btnAjustes.addEventListener('click', () => {
     contextoJogo.aoAbrirAjustes();
   });
+
+  return {
+    // Usado na hora de fechar o app: o histórico empilhado por esta armadilha
+    // atrapalha o window.close().
+    desarmarVoltar: () => {
+      try { window.removeEventListener('popstate', aoVoltarDoAndroid); } catch {}
+    },
+  };
 }

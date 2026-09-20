@@ -1,34 +1,28 @@
 // src/main.js
-// Ponto de entrada principal do Caça-Palavras com Esteira de Fases, UI responsiva e Instruções.
+// Ponto de entrada principal do Caça-Palavras. Liga Core, UI, Persistência e Wake Lock (§14).
 
 import { calcularLayout } from './ui/layout.js';
 import {
   criarEstruturaUI,
+  aplicarMedidas,
   renderizarGrade,
   desenharCapsulaSVG,
   renderizarLista,
   obterCorCiclo,
-  exibirToast
 } from './ui/render.js';
 import { iniciarCapturaSelecao } from './ui/selecao.js';
 import { configurarControles } from './ui/controles.js';
 import { iniciarDedoFantasma } from './ui/ensino.js';
 import { exibirVitoria } from './ui/vitoria.js';
 import { abrirModalAjustes } from './ui/ajustes.js';
-import { exibirTelaSaida } from './ui/dialogo.js';
-import { renderizarEsteiraTopo, abrirModalEsteiraFases, INFORMACOES_FASES } from './ui/esteira.js';
-import {
-  configurarSom,
-  tocarSomPalavraEncontrada,
-  tocarSomPalavraReal
-} from './ui/audio.js';
 
 import { gerarTabuleiro } from './core/gerador.js';
 import { criarPartida } from './core/partida.js';
 import {
   criarEstadoEscadaInicial,
   processarFimDePartida,
-  obterNivelEfetivo
+  obterNivelEfetivo,
+  ajustarNivelManualmente,
 } from './core/escada.js';
 import { hash32 } from './core/prng.js';
 import {
@@ -37,12 +31,10 @@ import {
   limparPartidaSalva,
   salvarEscada,
   carregarEscada,
-  salvarProgressoFases,
-  carregarProgressoFases,
   salvarStats,
   carregarStats,
   salvarAjustes,
-  carregarAjustes
+  carregarAjustes,
 } from './storage.js';
 
 // 1. Wake Lock resiliente (§11.2)
@@ -56,25 +48,16 @@ async function solicitarWakeLock() {
 }
 solicitarWakeLock();
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    solicitarWakeLock();
-  }
+  if (document.visibilityState === 'visible') solicitarWakeLock();
 });
 
-// 2. Estado Global da Aplicação
+// 2. Estado global
 const appEl = document.getElementById('app');
 const elementosUI = criarEstruturaUI(appEl);
 
 let ajustes = carregarAjustes();
 let estadoEscada = carregarEscada() || criarEstadoEscadaInicial();
-let progressoFases = carregarProgressoFases();
 let stats = carregarStats();
-
-// Sincroniza áudio
-configurarSom(ajustes.somAtivo !== false);
-if (elementosUI.iconeSom) {
-  elementosUI.iconeSom.textContent = ajustes.somAtivo !== false ? '🔊' : '🔇';
-}
 
 let partidaAtiva = null;
 let configLayout = null;
@@ -82,150 +65,152 @@ let capturadorSelecao = null;
 let tutorialFantasma = null;
 let reservaCache = null;
 
-// Carregar tabuleiros de reserva para fallback silencioso (§7.2)
+// Tabuleiros de reserva para o fallback silencioso (§7.2). O Service Worker
+// já os tem em pré-cache, então isto resolve rápido inclusive sem internet.
 fetch('./tabuleiros-reserva.json')
   .then(res => res.json())
   .then(dados => { reservaCache = dados; })
   .catch(() => {});
 
-// 3. Funções de Layout e Redesenho
+// 3. Layout e redesenho
 function atualizarDimensoesLayout() {
   const nDesejado = partidaAtiva ? partidaAtiva.tabuleiro.n : 10;
-  configLayout = calcularLayout(window.innerWidth, window.innerHeight, nDesejado, ajustes.deltaFontePx);
+  const qtdPalavras = partidaAtiva ? partidaAtiva.tabuleiro.palavras.length : 10;
 
-  const tema = partidaAtiva ? partidaAtiva.tabuleiro.tema : null;
+  configLayout = calcularLayout(
+    window.innerWidth,
+    window.innerHeight,
+    nDesejado,
+    ajustes.deltaCelulaPx || 0,
+    qtdPalavras
+  );
 
-  // Renderiza Esteira de Fases no Topo com tema integrado
-  renderizarEsteiraTopo(elementosUI.containerEsteira, {
-    faseAtual: progressoFases.faseAtual,
-    maxFaseDesbloqueada: progressoFases.maxFaseDesbloqueada,
-    tema,
-    onAbrirMapaFases: () => {
-      abrirModalEsteiraFases(elementosUI.camadaModal, {
-        faseAtual: progressoFases.faseAtual,
-        maxFaseDesbloqueada: progressoFases.maxFaseDesbloqueada,
-        onSelecionarFase: (faseEscolhida) => {
-          progressoFases.faseAtual = faseEscolhida;
-          salvarProgressoFases(progressoFases);
-          iniciarPartida(null, faseEscolhida);
-        }
-      });
-    }
-  });
+  aplicarMedidas(elementosUI, configLayout);
 
-  if (partidaAtiva) {
-    renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
+  if (!partidaAtiva) return;
 
-    if (elementosUI.rotuloTema) {
-      elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
-    }
-    const infoFase = INFORMACOES_FASES[progressoFases.faseAtual] || INFORMACOES_FASES[1];
-    if (elementosUI.dicaRapida) {
-      elementosUI.dicaRapida.textContent = `🧭 ${infoFase.direcoesTexto}`;
-    }
+  renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
+  elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
 
-    redesenharTodasAsCapsulas();
-    atualizarListaUI();
-  }
+  redesenharTodasAsCapsulas();
+  atualizarListaUI();
 }
 
 function redesenharTodasAsCapsulas() {
   elementosUI.svgCapsulas.innerHTML = '';
   if (!partidaAtiva) return;
 
-  // Redesenhar cápsulas das palavras encontradas com o ciclo de cores (§9.4)
+  // Cápsulas das palavras encontradas, no ciclo de cores (§9.4)
   partidaAtiva.ordemEncontradas.forEach((palavraTexto, idx) => {
     const celulas = partidaAtiva.celulasEncontradas.get(palavraTexto);
     if (celulas) {
-      const cor = obterCorCiclo(idx);
-      desenharCapsulaSVG(elementosUI.svgCapsulas, celulas, cor, null, configLayout);
+      desenharCapsulaSVG(elementosUI.svgCapsulas, celulas, obterCorCiclo(idx), null, configLayout);
     }
   });
 
-  // Atualizar marcas visuais de dicas ativas (§8)
+  // Marcas discretas e permanentes deixadas pelas dicas (§8)
   for (const [palavra, degrau] of Object.entries(partidaAtiva.degrausDicas)) {
-    if (partidaAtiva.pendentes.has(palavra)) {
-      const col = partidaAtiva.tabuleiro.palavrasColocadas.find(p => p.texto === palavra);
-      if (col) {
-        if (degrau >= 1) {
-          const celEl = document.getElementById(`cel-${col.celulas[0].l}-${col.celulas[0].c}`);
-          if (celEl) celEl.classList.add('dica-marcada');
-        }
-        if (degrau >= 2) {
-          desenharCapsulaSVG(elementosUI.svgCapsulas, col.celulas.slice(0, 2), '#ffd9a0', null, configLayout);
-        }
-      }
+    if (!partidaAtiva.pendentes.has(palavra)) continue;
+    const col = partidaAtiva.tabuleiro.palavrasColocadas.find(p => p.texto === palavra);
+    if (!col) continue;
+
+    if (degrau >= 1) {
+      const celEl = document.getElementById(`cel-${col.celulas[0].l}-${col.celulas[0].c}`);
+      if (celEl) celEl.classList.add('dica-marcada');
+    }
+    if (degrau >= 2) {
+      desenharCapsulaSVG(elementosUI.svgCapsulas, col.celulas.slice(0, 2), '#ffd9a0', null, configLayout);
     }
   }
 }
 
 function atualizarListaUI() {
   renderizarLista(
-    elementosUI,
+    elementosUI.containerLista,
     partidaAtiva.tabuleiro.palavras,
     partidaAtiva.encontradas,
     partidaAtiva.palavraMarcada,
     (palavraClicada) => {
       partidaAtiva.marcarPalavra(palavraClicada);
       atualizarListaUI();
-      exibirToast(elementosUI.toastNotificacao, `Buscando: ${palavraClicada}`);
     }
   );
 }
 
-// 4. Inicialização de Partida
-function iniciarPartida(estadoSalvo = null, nivelForcado = null) {
+// 4. Início de partida
+// A semente é derivada do nível, do índice da partida e do ciclo de temas (§7.2),
+// e o tema roda sem repetir enquanto o ciclo não fecha.
+function proximoTemaDoCiclo() {
+  stats.indiceTema = (Number(stats.indiceTema) || 0) + 1;
+  return stats.indiceTema;
+}
+
+function iniciarPartida(estadoSalvo = null) {
   if (tutorialFantasma) {
     tutorialFantasma.parar();
     tutorialFantasma = null;
   }
 
-  const nivelDaFase = nivelForcado || progressoFases.faseAtual || obterNivelEfetivo(estadoEscada);
-  const layoutPrevio = calcularLayout(window.innerWidth, window.innerHeight, 10, ajustes.deltaFontePx);
+  const nivel = obterNivelEfetivo(estadoEscada);
+  const layoutPrevio = calcularLayout(
+    window.innerWidth, window.innerHeight, 10, ajustes.deltaCelulaPx || 0
+  );
 
   let tabuleiro = null;
 
   if (estadoSalvo) {
-    // Reconstrói tabuleiro a partir da semente salva (§7.6)
+    // O tabuleiro é reconstruído idêntico a partir da semente salva (§7.6).
+    // Se ele não revalidar, descarta-se em silêncio e começa partida nova —
+    // ela nunca vê erro.
     tabuleiro = gerarTabuleiro(estadoSalvo.semente, estadoSalvo.n, estadoSalvo.nivel, estadoSalvo.tema);
+    const palavrasBatem = tabuleiro
+      && estadoSalvo.encontradas.every(p => tabuleiro.palavras.some(x => x.n === p));
+    if (!tabuleiro || !palavrasBatem) {
+      tabuleiro = null;
+      estadoSalvo = null;
+      limparPartidaSalva();
+    }
   }
 
   if (!tabuleiro) {
-    // Gera nova semente e nova partida
-    const semente = hash32(Date.now(), stats.concluidas, nivelDaFase, Math.random());
-    const reservaFallback = reservaCache ? reservaCache[Math.floor(Math.random() * reservaCache.length)] : null;
-    tabuleiro = gerarTabuleiro(semente, layoutPrevio.nMax, nivelDaFase, null, reservaFallback);
+    const indiceTema = proximoTemaDoCiclo();
+    const semente = hash32(nivel, stats.concluidas, indiceTema);
+    const reserva = reservaCache && reservaCache.length
+      ? reservaCache[semente % reservaCache.length]
+      : null;
+    tabuleiro = gerarTabuleiro(semente, layoutPrevio.nMax, nivel, null, reserva);
+    salvarStats(stats);
   }
 
   partidaAtiva = criarPartida(tabuleiro, estadoSalvo);
   salvarPartida(partidaAtiva.obterDadosParaSalvar());
 
   atualizarDimensoesLayout();
+  reiniciarCapturaSelecao();
 
-  // Reinicia capturador tátil
-  if (capturadorSelecao) capturadorSelecao.destruir();
-  capturadorSelecao = iniciarCapturaSelecao(elementosUI, configLayout, aoResolverSelecao);
-
-  // Dedo fantasma demonstrativo se for a primeira vez (§5.7)
+  // Dedo fantasma só no primeiro tabuleiro de uma instalação nova (§5.7)
   if (!stats.ensinoConcluido && partidaAtiva.tabuleiro.palavrasColocadas.length > 0) {
-    const palavraCurta = [...partidaAtiva.tabuleiro.palavrasColocadas].sort((a, b) => a.texto.length - b.texto.length)[0];
+    const palavraCurta = [...partidaAtiva.tabuleiro.palavrasColocadas]
+      .sort((a, b) => a.texto.length - b.texto.length)[0];
     tutorialFantasma = iniciarDedoFantasma(elementosUI.containerGrade, palavraCurta, configLayout);
   }
 }
 
-// 5. Resolução de Seleção e os 4 Desfechos (§3.4)
+function reiniciarCapturaSelecao() {
+  if (capturadorSelecao) capturadorSelecao.destruir();
+  capturadorSelecao = iniciarCapturaSelecao(elementosUI, configLayout, aoResolverSelecao);
+}
+
+// 5. Os quatro desfechos de uma seleção (§3.4)
 function aoResolverSelecao(segmento) {
   const resultado = partidaAtiva.resolverSelecao(segmento);
 
   if (resultado.desfecho === 'acertou') {
-    // 1. Acertou: som relaxante, cápsula no ciclo de cores, vibração 40ms, riscar da lista (§3.4)
-    tocarSomPalavraEncontrada();
     if ('vibrate' in navigator) {
       try { navigator.vibrate(40); } catch {}
     }
 
-    exibirToast(elementosUI.toastNotificacao, `Muito bem! Encontrou ${resultado.palavra}!`);
-
+    // O dedo fantasma para para sempre na primeira seleção bem-sucedida dela (§5.7)
     if (tutorialFantasma) {
       tutorialFantasma.parar();
       tutorialFantasma = null;
@@ -237,107 +222,98 @@ function aoResolverSelecao(segmento) {
     atualizarListaUI();
     salvarPartida(partidaAtiva.obterDadosParaSalvar());
 
-    if (resultado.completo) {
-      // Vitória da Fase! (§9.7)
-      finalizarPartida(false);
-    }
-  } else if (resultado.desfecho === 'palavra_real') {
-    // 2. Palavra real fora da lista: som discreto e lampejo âmbar de 500 ms (§3.4)
-    tocarSomPalavraReal();
-    exibirToast(elementosUI.toastNotificacao, `Palavra válida, mas não está na lista!`);
-    const elFlash = desenharCapsulaSVG(elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-real-ambar)', null, configLayout);
-    setTimeout(() => {
-      if (elFlash) elFlash.remove();
-    }, 500);
-  } else if (resultado.desfecho === 'errou') {
-    // 4. Errou: cápsula cinza-neutra balança 200 ms e some. Sem som estridente (§3.4)
-    const elErro = desenharCapsulaSVG(elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-erro-cinza)', null, configLayout);
-    elementosUI.containerGrade.classList.add('anim-erro');
-    setTimeout(() => {
-      if (elErro) elErro.remove();
-      elementosUI.containerGrade.classList.remove('anim-erro');
-    }, 200);
+    if (resultado.completo) concluirPartida();
+    return;
+  }
+
+  if (resultado.desfecho === 'palavra_real') {
+    // Ela foi professora de Português: palavra real no enchimento é reconhecida,
+    // não recusada. Lampejo âmbar de 500 ms, sem uma única palavra escrita (§3.4)
+    const elFlash = desenharCapsulaSVG(
+      elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-real-ambar)', null, configLayout
+    );
+    setTimeout(() => { if (elFlash) elFlash.remove(); }, 500);
+    return;
+  }
+
+  if (resultado.desfecho === 'errou') {
+    // Cápsula cinza-neutra, balança 200 ms e some. Sem vermelho, sem som, sem mensagem (§3.4)
+    const elErro = desenharCapsulaSVG(
+      elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-erro-cinza)', null, configLayout
+    );
+    if (elErro) elErro.classList.add('capsula-erro');
+    setTimeout(() => { if (elErro) elErro.remove(); }, 200);
   }
 }
 
-function finalizarPartida(abandonada = false) {
-  const segundos = partidaAtiva.obterTempoGastoSegundos();
-  const dicas = partidaAtiva.dicasUsadas;
-  const faseAtual = progressoFases.faseAtual;
-
-  if (!abandonada) {
-    stats.concluidas++;
-    salvarStats(stats);
-
-    // Desbloqueia a próxima fase na esteira se venceu a mais alta
-    if (faseAtual === progressoFases.maxFaseDesbloqueada && faseAtual < 12) {
-      progressoFases.maxFaseDesbloqueada = faseAtual + 1;
-    }
-    salvarProgressoFases(progressoFases);
-  }
-
-  // Atualiza escada de dificuldade (§6.3)
-  estadoEscada = processarFimDePartida(estadoEscada, {
-    segundos,
-    dicas,
-    abandonada
-  });
-  salvarEscada(estadoEscada);
+// Fim de partida por vitória: comemora e alimenta a escada
+function concluirPartida() {
+  registrarNaEscada({ abandonada: false, concluida: true });
+  stats.concluidas++;
+  salvarStats(stats);
   limparPartidaSalva();
 
-  if (!abandonada) {
-    exibirVitoria(elementosUI.camadaModal, {
-      faseAtual,
-      tempoSegundos: segundos,
-      dicasUsadas: dicas,
-      onAvancarFase: (proximaFase) => {
-        progressoFases.faseAtual = proximaFase;
-        salvarProgressoFases(progressoFases);
-        iniciarPartida(null, proximaFase);
-      },
-      onJogarNovamente: (mesmaFase) => {
-        iniciarPartida(null, mesmaFase);
-      }
-    });
-  }
+  exibirVitoria(elementosUI.camadaModal, {
+    aoAcenderOnda: acenderCapsulasEmOnda,
+    onJogarOutra: () => iniciarPartida(null),
+  });
 }
 
-// 6. Configuração dos Controles da UI (§5.4)
-configurarControles(elementosUI, {
+// Fim de partida por JOGO NOVO: nunca comemora, nunca conta como concluída.
+// "Abandonada" é só o que alimenta a escada (§6.3).
+function encerrarPartidaSemVitoria() {
+  const metade = Math.ceil(partidaAtiva.tabuleiro.palavras.length / 2);
+  registrarNaEscada({ abandonada: partidaAtiva.encontradas.size < metade, concluida: false });
+  limparPartidaSalva();
+}
+
+function registrarNaEscada({ abandonada, concluida }) {
+  estadoEscada = processarFimDePartida(estadoEscada, {
+    segundos: partidaAtiva.obterTempoGastoSegundos(),
+    dicas: partidaAtiva.dicasUsadas,
+    abandonada,
+    concluida,
+  });
+  salvarEscada(estadoEscada);
+}
+
+// §9.7: as cápsulas acendem em onda, da primeira à última encontrada
+function acenderCapsulasEmOnda() {
+  const capsulas = [...elementosUI.svgCapsulas.children];
+  capsulas.forEach((el, idx) => {
+    el.classList.add('capsula-onda');
+    el.style.animationDelay = `${idx * 90}ms`;
+  });
+}
+
+// 6. Controles (§5.4)
+const controles = configurarControles(elementosUI, {
   aoPedirDica: () => {
     if (!partidaAtiva || partidaAtiva.estaCompleto()) return;
     const res = partidaAtiva.aplicarDica();
     if (!res) return;
 
     if (res.degrau === 1) {
-      // 1º Toque: primeira letra pulsa em dourado (§8)
-      if (elementosUI.subtextoDica) {
-        elementosUI.subtextoDica.textContent = '2º Toque: Direção';
-      }
+      // 1º toque: a primeira letra pulsa em dourado, sem direção (§8)
       const cel = res.celulas[0];
       const celEl = document.getElementById(`cel-${cel.l}-${cel.c}`);
       if (celEl) {
         celEl.classList.add('anim-dica');
+        // Depois de pulsar, deixa a marca discreta e permanente (§8)
         setTimeout(() => {
           celEl.classList.remove('anim-dica');
           celEl.classList.add('dica-marcada');
-        }, 1800);
+        }, 3000);
       }
     } else if (res.degrau === 2) {
-      // 2º Toque: direção estende 2 células (§8)
-      if (elementosUI.subtextoDica) {
-        elementosUI.subtextoDica.textContent = '3º Toque: Revelar';
-      }
+      // 2º toque: a cápsula se estende 2 células a partir da primeira letra (§8)
       desenharCapsulaSVG(elementosUI.svgCapsulas, res.celulas, '#ffd9a0', null, configLayout);
     } else if (res.degrau === 3) {
-      // 3º Toque: palavra inteira revelada e riscada (§8)
-      if (elementosUI.subtextoDica) {
-        elementosUI.subtextoDica.textContent = '1º Toque: 1ª Letra';
-      }
+      // 3º toque: palavra inteira revelada e contada como encontrada (§8)
       redesenharTodasAsCapsulas();
       atualizarListaUI();
       if (res.completo) {
-        finalizarPartida(false);
+        concluirPartida();
         return;
       }
     }
@@ -345,71 +321,68 @@ configurarControles(elementosUI, {
     salvarPartida(partidaAtiva.obterDadosParaSalvar());
   },
 
-  temPartidaEmAndamento: () => {
-    return partidaAtiva && !partidaAtiva.estaCompleto() && partidaAtiva.encontradas.size > 0;
-  },
+  temPartidaEmAndamento: () =>
+    Boolean(partidaAtiva) && !partidaAtiva.estaCompleto() && partidaAtiva.encontradas.size > 0,
 
-  aoIniciarNovoJogo: (abandonou) => {
-    if (abandonou) {
-      const metade = Math.ceil(partidaAtiva.tabuleiro.palavras.length / 2);
-      const menosQueMetade = partidaAtiva.encontradas.size < metade;
-      finalizarPartida(menosQueMetade);
-    }
-    iniciarPartida(null, progressoFases.faseAtual);
+  aoIniciarNovoJogo: (haviaPartida) => {
+    if (haviaPartida) encerrarPartidaSemVitoria();
+    iniciarPartida(null);
   },
 
   aoSair: () => {
-    if (partidaAtiva) {
-      salvarPartida(partidaAtiva.obterDadosParaSalvar());
-    }
-    try {
-      window.close();
-    } catch {}
-
-    // Exibe tela amigável caso o navegador impeça o fechamento da aba por script
-    setTimeout(() => {
-      exibirTelaSaida(elementosUI.camadaModal, () => {
-        // Callback ao clicar em Voltar ao Jogo
-      });
-    }, 100);
-  },
-
-  aoMudarSom: (novoSomAtivo) => {
-    ajustes.somAtivo = novoSomAtivo;
-    salvarAjustes(ajustes);
+    if (partidaAtiva) salvarPartida(partidaAtiva.obterDadosParaSalvar());
+    fecharAplicativo();
   },
 
   aoAbrirAjustes: () => {
     abrirModalAjustes(elementosUI.camadaModal, {
-      estadoEscada,
-      ajustes,
-      partidasConcluidas: stats.concluidas,
-      onSalvarAjustes: (novosAjustes) => {
-        ajustes = { ...ajustes, ...novosAjustes };
+      obterEstado: () => ({
+        deltaCelulaPx: ajustes.deltaCelulaPx || 0,
+        nivelEfetivo: obterNivelEfetivo(estadoEscada),
+        partidasConcluidas: stats.concluidas,
+      }),
+      onMudarCelula: (delta) => {
+        ajustes = { ...ajustes, deltaCelulaPx: delta };
         salvarAjustes(ajustes);
         atualizarDimensoesLayout();
+        reiniciarCapturaSelecao();
       },
       onMudarNivel: (delta) => {
-        estadoEscada.ajusteManual = (estadoEscada.ajusteManual || 0) + delta;
+        estadoEscada = ajustarNivelManualmente(estadoEscada, delta);
         salvarEscada(estadoEscada);
-        progressoFases.faseAtual = Math.max(1, Math.min(12, progressoFases.faseAtual + delta));
-        progressoFases.maxFaseDesbloqueada = Math.max(progressoFases.maxFaseDesbloqueada, progressoFases.faseAtual);
-        salvarProgressoFases(progressoFases);
-        iniciarPartida(null, progressoFases.faseAtual);
-      }
+      },
+      onFechar: () => {},
     });
-  }
+  },
 });
 
-// Redimensionamento de janela resiliente com ressincronização do capturador tátil
+// Fechar de verdade ao tocar em SAIR. No aplicativo instalado (display:
+// standalone) o window.close() fecha; numa aba comum de navegador o Chrome
+// recusa fechar uma página que o próprio usuário abriu, e aí não sobra nada
+// na tela além do jogo.
+function fecharAplicativo() {
+  // A armadilha do botão voltar empilha estados no histórico e atrapalha o
+  // fechamento: desfaz ela antes de tentar.
+  controles.desarmarVoltar();
+
+  try { window.close(); } catch {}
+
+  // Segunda tentativa: alguns Androids só fecham uma janela que um script
+  // "adotou" antes.
+  setTimeout(() => {
+    try {
+      window.open('', '_self');
+      window.close();
+    } catch {}
+  }, 60);
+}
+
+// A grade muda de tamanho junto com a janela, e o capturador tátil precisa
+// das medidas novas — senão o toque passa a cair na célula errada.
 window.addEventListener('resize', () => {
   atualizarDimensoesLayout();
-  if (capturadorSelecao) {
-    capturadorSelecao.destruir();
-    capturadorSelecao = iniciarCapturaSelecao(elementosUI, configLayout, aoResolverSelecao);
-  }
+  reiniciarCapturaSelecao();
 });
 
-// 7. Arranque: Recupera partida guardada ou começa nova (§7.6)
-const partidaSalva = carregarPartida();
-iniciarPartida(partidaSalva, partidaSalva?.nivel || progressoFases.faseAtual);
+// 7. Arranque: recupera a partida guardada ou começa uma nova (§7.6)
+iniciarPartida(carregarPartida());

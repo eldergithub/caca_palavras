@@ -1,70 +1,94 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&amp;display=swap');
-      .grid-letter {
-        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      .letra {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         font-weight: 800;
-        font-size: 44px;
+        font-size: 36px;
         fill: #1E2A38;
         text-anchor: middle;
         dominant-baseline: central;
       }
-      .mini-letter {
-        font-size: 33px;
-        font-weight: 800;
-      }
+      /* As letras de enchimento recuam para que as duas palavras se leiam
+         mesmo no ícone de 48 px; a tinta das destacadas nunca clareia. */
+      .enchimento { opacity: 0.42; }
+      .destaque { font-size: 40px; }
     </style>
   </defs>
 
   <!-- Fundo total para máscara adaptativa (Android PWA Maskable) -->
   <rect width="512" height="512" fill="#F8F5EC" />
 
-  <!-- Conteúdo escalado para área segura circular de 80% (Safe Zone) -->
+  <!-- Conteúdo escalado para a área segura circular (80%) -->
   <g transform="translate(256, 256) scale(0.72) translate(-256, -256)">
-    <!-- Cruz Amarela de Destaque (#F4C542) -->
-    <rect x="227" y="60" width="58" height="384" rx="29" fill="#F4C542"/>
-    <rect x="62" y="303" width="388" height="58" rx="29" fill="#F4C542"/>
+    <!-- Cápsulas: PALAVRA na vertical (coluna 5) e CRUZADA na horizontal (linha 4),
+       cruzando na letra A. -->
+  <rect x="290" y="62" width="44" height="380" rx="22" fill="#F4C542"/>
+  <rect x="66" y="230" width="380" height="44" rx="22" fill="#F4C542"/>
 
-    <!-- Grade de Letras (#1E2A38) -->
-    <g class="grid-letter">
-      <!-- Linha 1 -->
-      <text x="100" y="104">A</text>
-      <text x="178" y="104">B</text>
-      <text x="256" y="104">C</text>
-      <text x="334" y="104">D</text>
-      <text x="412" y="104">E</text>
+  <g class="letra">
+    <!-- Linha 1 -->
+    <text class="enchimento" x="88" y="84">M</text>
+    <text class="enchimento" x="144" y="84">E</text>
+    <text class="enchimento" x="200" y="84">T</text>
+    <text class="enchimento" x="256" y="84">O</text>
+    <text class="destaque" x="312" y="84">P</text>
+    <text class="enchimento" x="368" y="84">I</text>
+    <text class="enchimento" x="424" y="84">S</text>
 
-      <!-- Linha 2 -->
-      <text x="100" y="178">F</text>
-      <text x="178" y="178">G</text>
-      <text x="256" y="178">H</text>
-      <text x="334" y="178">I</text>
-      <text x="412" y="178">J</text>
+    <!-- Linha 2 -->
+    <text class="enchimento" x="88" y="140">A</text>
+    <text class="enchimento" x="144" y="140">R</text>
+    <text class="enchimento" x="200" y="140">I</text>
+    <text class="enchimento" x="256" y="140">S</text>
+    <text class="destaque" x="312" y="140">A</text>
+    <text class="enchimento" x="368" y="140">O</text>
+    <text class="enchimento" x="424" y="140">C</text>
 
-      <!-- Linha 3 -->
-      <text x="100" y="252">K</text>
-      <text x="178" y="252">L</text>
-      <text x="256" y="252">M</text>
-      <text x="334" y="252">N</text>
-      <text x="412" y="252">O</text>
+    <!-- Linha 3 -->
+    <text class="enchimento" x="88" y="196">S</text>
+    <text class="enchimento" x="144" y="196">O</text>
+    <text class="enchimento" x="200" y="196">A</text>
+    <text class="enchimento" x="256" y="196">M</text>
+    <text class="destaque" x="312" y="196">L</text>
+    <text class="enchimento" x="368" y="196">E</text>
+    <text class="enchimento" x="424" y="196">N</text>
 
-      <!-- Linha 4 (Destaque: PALAVRAS) -->
-      <text x="100" y="331">P</text>
-      <text x="146" y="331">A</text>
-      <text x="190" y="331">L</text>
-      <text x="241" y="331" class="mini-letter">A</text>
-      <text x="271" y="331" class="mini-letter">V</text>
-      <text x="322" y="331">R</text>
-      <text x="366" y="331">A</text>
-      <text x="412" y="331">S</text>
+    <!-- Linha 4 — CRUZADA -->
+    <text class="destaque" x="88" y="252">C</text>
+    <text class="destaque" x="144" y="252">R</text>
+    <text class="destaque" x="200" y="252">U</text>
+    <text class="destaque" x="256" y="252">Z</text>
+    <text class="destaque" x="312" y="252">A</text>
+    <text class="destaque" x="368" y="252">D</text>
+    <text class="destaque" x="424" y="252">A</text>
 
-      <!-- Linha 5 -->
-      <text x="100" y="405">U</text>
-      <text x="178" y="405">V</text>
-      <text x="256" y="405">W</text>
-      <text x="334" y="405">X</text>
-      <text x="412" y="405">Y</text>
-    </g>
+    <!-- Linha 5 -->
+    <text class="enchimento" x="88" y="308">T</text>
+    <text class="enchimento" x="144" y="308">I</text>
+    <text class="enchimento" x="200" y="308">E</text>
+    <text class="enchimento" x="256" y="308">N</text>
+    <text class="destaque" x="312" y="308">V</text>
+    <text class="enchimento" x="368" y="308">A</text>
+    <text class="enchimento" x="424" y="308">O</text>
+
+    <!-- Linha 6 -->
+    <text class="enchimento" x="88" y="364">O</text>
+    <text class="enchimento" x="144" y="364">A</text>
+    <text class="enchimento" x="200" y="364">S</text>
+    <text class="enchimento" x="256" y="364">I</text>
+    <text class="destaque" x="312" y="364">R</text>
+    <text class="enchimento" x="368" y="364">M</text>
+    <text class="enchimento" x="424" y="364">E</text>
+
+    <!-- Linha 7 -->
+    <text class="enchimento" x="88" y="420">N</text>
+    <text class="enchimento" x="144" y="420">E</text>
+    <text class="enchimento" x="200" y="420">O</text>
+    <text class="enchimento" x="256" y="420">A</text>
+    <text class="destaque" x="312" y="420">A</text>
+    <text class="enchimento" x="368" y="420">S</text>
+    <text class="enchimento" x="424" y="420">I</text>
+  </g>
   </g>
 </svg>

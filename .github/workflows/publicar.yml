@@ -34,7 +34,10 @@ jobs:
         run: npm ci
 
       - name: Portão de Testes Automatizados (§10)
+        # 20.000 sementes × 12 níveis, como manda §10. Leva ~8 min.
         run: npm test
+        env:
+          SEMENTES_POR_NIVEL: 20000
 
       - name: Compilar pacote de produção e gerar SW (§11.1)
         run: npm run build
