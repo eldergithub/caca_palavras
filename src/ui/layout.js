@@ -10,6 +10,7 @@ export const ALTURA_BOTAO_MIN = 64; // px piso inegociável para alvos de toque 
 export const ALTURA_TOPO = 44;      // px dos cantos SAIR / engrenagem (§5.1)
 export const TETO_CARTAO = 480;     // px de largura máxima do cartão em telas grandes
 export const FONTE_LISTA_MINIMA = 18; // px. A lista nunca encolhe abaixo disso (§5.2)
+export const ALTURA_MINIMA_RETRATO = 560; // px. Abaixo disso a pilha em retrato não cabe
 
 export function colunasPossiveis(larguraUtil, pisoCelula = CELULA_MINIMA) {
   const n = Math.floor((larguraUtil + VAO) / (pisoCelula + VAO));
@@ -32,9 +33,10 @@ const CEDENCIAS = [
 
 // `deltaCelulaPx` vem da engrenagem e move o piso de célula em ±3 px (§5.4)
 export function calcularLayout(larguraJanela, alturaJanela, nDesejado = 10, deltaCelulaPx = 0, qtdPalavras = 10) {
-  // Em paisagem o layout se reorganiza: grade à esquerda, lista à direita (§5.1).
-  // A grade passa a disputar a ALTURA com ninguém e a largura com a lista.
-  const paisagem = larguraJanela > alturaJanela;
+  // Celular deitado: o layout se reorganiza, grade à esquerda e lista à direita
+  // (§5.1). O limiar tem de ser o MESMO da regra de CSS: acima dele a tela
+  // comporta a pilha em retrato, e é ela que vale — inclusive no monitor.
+  const paisagem = larguraJanela > alturaJanela && alturaJanela < ALTURA_MINIMA_RETRATO;
 
   // Em paisagem a grade é limitada pela altura; os 16 px extras cobrem o
   // respiro do cartão entre a barra de topo e o tabuleiro.

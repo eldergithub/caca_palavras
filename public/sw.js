@@ -1,8 +1,10 @@
 // public/sw.js
 // Molde do Service Worker com os 5 cuidados inegociáveis (§11.1).
-// Substituições em tempo de build por tools/gen-sw.mjs:
-//   __VERSAO__   -> SHA-1 de 10 dígitos do conteúdo de dist/
-//   __RECURSOS__ -> Lista gerada dos arquivos de dist/
+//
+// tools/gen-sw.mjs substitui dois marcadores logo abaixo: a versão do cache
+// (SHA-1 de 10 dígitos do conteúdo de dist/) e a lista de pré-carga gerada a
+// partir de dist/. Os marcadores NÃO podem ser citados neste comentário: a
+// substituição é global e expandiria a lista aqui dentro, quebrando o arquivo.
 
 const CACHE_NAME = 'cp-cache-__VERSAO__';
 const RECURSOS_PRECARGA = __RECURSOS__;

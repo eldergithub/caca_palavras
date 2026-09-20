@@ -471,8 +471,10 @@ html, body {
 /* Em retrato a coluna lateral não existe para o layout */
 .coluna-lateral { display: contents; }
 
-/* 10. Paisagem: reorganiza sozinho, sem aviso e sem jargão (§5.1) */
-@media (orientation: landscape) {
+/* 10. Celular deitado: reorganiza sozinho, sem aviso e sem jargão (§5.1).
+   Só vale quando a tela é baixa demais para a pilha em retrato — num monitor
+   o layout continua sendo o do celular em pé, centralizado. */
+@media (orientation: landscape) and (max-height: 559px) {
   .coluna-lateral {
     display: flex;
     flex: 1 1 260px;

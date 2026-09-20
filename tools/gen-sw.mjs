@@ -5,6 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -63,6 +64,16 @@ const recursosUnicos = Array.from(new Set(recursos));
 let template = fs.readFileSync(MOLDE_SW, 'utf-8');
 template = template.replace('__VERSAO__', versao);
 template = template.replace('__RECURSOS__', JSON.stringify(recursosUnicos, null, 2));
+
+// 5. Portão de sintaxe: um sw.js inválido não instala, e o app deixa de
+// funcionar offline sem dar sinal nenhum. Falha o build em vez de publicar.
+try {
+  new vm.Script(template, { filename: 'dist/sw.js' });
+} catch (erro) {
+  console.error('\n✖ O Service Worker gerado é inválido e NÃO foi publicado:');
+  console.error(`  ${erro.message}\n`);
+  process.exit(1);
+}
 
 fs.writeFileSync(DESTINO_SW, template, 'utf-8');
 
