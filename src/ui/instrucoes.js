@@ -5,8 +5,11 @@ export function abrirModalInstrucoes(containerModal) {
   containerModal.innerHTML = `
     <div class="modal-backdrop">
       <div class="modal-dialogo modal-instrucoes" role="dialog" aria-modal="true">
-        <div class="modal-cabecalho">
-          <h2>📖 Como Jogar</h2>
+        <div class="modal-cabecalho" style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="./icons/icon.svg" alt="Caça-Palavras Logo" style="width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+            <h2 style="margin: 0; font-size: 1.25rem;">Como Jogar</h2>
+          </div>
           <button id="btn-fechar-instrucoes-x" class="btn-fechar-modal" aria-label="Fechar">✕</button>
         </div>
 
