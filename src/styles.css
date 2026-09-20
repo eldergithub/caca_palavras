@@ -106,12 +106,23 @@ html, body {
   stroke: currentColor;
 }
 
+/* Ordem de leitura em retrato: ela lê primeiro o que procurar (tema e lista)
+   e só depois encara a grade, que fica logo acima dos botões — onde o polegar
+   alcança sem mudar a pegada. */
+.rotulo-tema { order: 1; }
+.container-lista { order: 2; }
+.area-tabuleiro-central { order: 3; }
+.barra-botoes { order: 4; }
+
 /* 2. Tabuleiro */
 .area-tabuleiro-central {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
+  /* A sobra de espaço se divide igualmente acima e abaixo da grade, em vez de
+     empilhar tudo entre a grade e os botões. */
+  margin-block: auto;
 }
 
 .container-grade {
@@ -164,16 +175,27 @@ html, body {
   background-color: #d4a017;
 }
 
-/* 3. Rótulo de tema (§5.1) */
+/* 3. Rótulo de tema e direções do tabuleiro (§5.1) */
 .rotulo-tema {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 14px;
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cor-tema);
   text-align: center;
+}
+
+/* Setas das direções presentes neste tabuleiro: diz onde procurar,
+   sem entregar nenhuma palavra */
+.setas-direcoes {
+  font-size: 19px;
+  letter-spacing: 3px;
+  color: var(--cor-tinta);
+  line-height: 1;
 }
 
 /* 4. Lista em 2 colunas, nunca rola (§5.3) */
@@ -215,7 +237,6 @@ html, body {
 .barra-botoes {
   width: 100%;
   flex: 0 0 auto;
-  margin-top: auto;
   display: flex;
   gap: 16px;
 }
@@ -477,7 +498,14 @@ html, body {
     height: 36px;
   }
 
-  .area-tabuleiro-central { flex: 0 0 auto; }
+  /* Grade à esquerda, coluna de leitura à direita */
+  .area-tabuleiro-central {
+    flex: 0 0 auto;
+    order: 0;
+    margin-block: 0;
+  }
+
+  .coluna-lateral { order: 1; }
 
   .barra-botoes { margin-top: 0; }
 }

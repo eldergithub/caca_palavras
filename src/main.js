@@ -8,6 +8,7 @@ import {
   renderizarGrade,
   desenharCapsulaSVG,
   renderizarLista,
+  renderizarSetasDirecoes,
   obterCorCiclo,
 } from './ui/render.js';
 import { iniciarCapturaSelecao } from './ui/selecao.js';
@@ -90,7 +91,8 @@ function atualizarDimensoesLayout() {
   if (!partidaAtiva) return;
 
   renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
-  elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
+  elementosUI.textoTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
+  renderizarSetasDirecoes(elementosUI.setasDirecoes, partidaAtiva.tabuleiro.palavrasColocadas);
 
   redesenharTodasAsCapsulas();
   atualizarListaUI();

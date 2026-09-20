@@ -44,7 +44,10 @@ export function criarEstruturaUI(containerApp) {
       <!-- Em retrato este bloco é transparente (display: contents);
            em paisagem ele vira a coluna ao lado da grade (§5.1) -->
       <div class="coluna-lateral">
-      <div id="rotulo-tema" class="rotulo-tema"></div>
+      <div id="rotulo-tema" class="rotulo-tema">
+        <span id="texto-tema"></span>
+        <span id="setas-direcoes" class="setas-direcoes"></span>
+      </div>
 
       <div id="container-lista" class="container-lista"></div>
 
@@ -78,6 +81,8 @@ export function criarEstruturaUI(containerApp) {
     svgCapsulas: document.getElementById('svg-capsulas'),
     gridLetras: document.getElementById('grid-letras'),
     rotuloTema: document.getElementById('rotulo-tema'),
+    textoTema: document.getElementById('texto-tema'),
+    setasDirecoes: document.getElementById('setas-direcoes'),
     containerLista: document.getElementById('container-lista'),
     btnDica: document.getElementById('btn-dica'),
     btnNovo: document.getElementById('btn-novo'),
@@ -194,4 +199,23 @@ export function renderizarLista(containerLista, palavras, encontradasSet, palavr
 
     containerLista.appendChild(item);
   }
+}
+
+// Setas das direções em que as palavras realmente foram colocadas neste
+// tabuleiro. Mostra ONDE procurar sem entregar NENHUMA palavra — é a mesma
+// informação que um caça-palavras impresso traz no enunciado.
+const SETA_POR_DIRECAO = {
+  L: '→', O: '←', S: '↓', N: '↑',
+  SE: '↘', NO: '↖', SO: '↙', NE: '↗',
+};
+
+const ORDEM_SETAS = ['L', 'O', 'S', 'N', 'SE', 'NE', 'SO', 'NO'];
+
+export function renderizarSetasDirecoes(elSetas, palavrasColocadas) {
+  if (!elSetas) return;
+  const usadas = new Set(palavrasColocadas.map(p => p.dirId));
+  elSetas.textContent = ORDEM_SETAS
+    .filter(id => usadas.has(id))
+    .map(id => SETA_POR_DIRECAO[id])
+    .join(' ');
 }

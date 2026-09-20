@@ -502,6 +502,16 @@ que não se confunde não serve para nada.
         + env(safe-area-inset-bottom) + 16 px
 ```
 
+> **Ordem revista na Fase 8:** o tema e a lista ficam **acima** e a grade
+> **abaixo**, logo acima dos botões. Ela lê primeiro o que tem de procurar e
+> só então encara o tabuleiro — e a grade passa a ficar na metade de baixo da
+> tela, onde o polegar alcança sem mudar a pegada. O diagrama acima mostra a
+> ordem original.
+>
+> Ao lado do tema aparecem as **setas das direções realmente usadas naquele
+> tabuleiro** (→ ← ↓ ↑ ↘ ↗ ↙ ↖). É a mesma informação que o enunciado de um
+> caça-palavras impresso traz: diz onde procurar sem entregar palavra nenhuma.
+
 **Retrato elimina a tela "gire o celular".** O Spider precisou construir uma
 ilustração animada de celular girando; aqui esse modo de falha simplesmente
 não existe, porque retrato é como o aparelho é segurado por padrão. Ainda
