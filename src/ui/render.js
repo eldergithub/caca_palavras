@@ -27,9 +27,9 @@ export function criarEstruturaUI(containerApp) {
           <span>SAIR</span>
         </button>
         <button id="btn-ajustes" class="btn-topo icone-apenas" aria-label="Ajustes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
             <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
         </button>
       </header>
@@ -45,8 +45,17 @@ export function criarEstruturaUI(containerApp) {
            em paisagem ele vira a coluna ao lado da grade (§5.1) -->
       <div class="coluna-lateral">
       <div id="rotulo-tema" class="rotulo-tema">
-        <span id="texto-tema"></span>
-        <span id="setas-direcoes" class="setas-direcoes"></span>
+        <div class="pill-tema">
+          <svg class="icone-tema-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+          <span id="texto-tema"></span>
+        </div>
+        <div class="pill-status-grupo">
+          <span id="contador-progresso" class="pill-status pill-contador" aria-label="Progresso"></span>
+          <span id="setas-direcoes" class="pill-status pill-direcoes" aria-label="Direções das palavras"></span>
+        </div>
       </div>
 
       <div id="container-lista" class="container-lista"></div>
@@ -82,6 +91,7 @@ export function criarEstruturaUI(containerApp) {
     gridLetras: document.getElementById('grid-letras'),
     rotuloTema: document.getElementById('rotulo-tema'),
     textoTema: document.getElementById('texto-tema'),
+    contadorProgresso: document.getElementById('contador-progresso'),
     setasDirecoes: document.getElementById('setas-direcoes'),
     containerLista: document.getElementById('container-lista'),
     btnDica: document.getElementById('btn-dica'),
@@ -190,7 +200,19 @@ export function renderizarLista(containerLista, palavras, encontradasSet, palavr
     if (foiEncontrada) item.classList.add('encontrada');
     if (palavraMarcada === textoNorm && !foiEncontrada) item.classList.add('marcada');
 
-    item.textContent = grafia;
+    const spanTexto = document.createElement('span');
+    spanTexto.className = 'texto-palavra';
+    spanTexto.textContent = grafia;
+    item.appendChild(spanTexto);
+
+    if (foiEncontrada) {
+      const spanCheck = document.createElement('span');
+      spanCheck.className = 'check-palavra';
+      spanCheck.textContent = '✓';
+      spanCheck.setAttribute('aria-hidden', 'true');
+      item.appendChild(spanCheck);
+    }
+
     item.dataset.palavra = textoNorm;
 
     if (!foiEncontrada) {

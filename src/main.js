@@ -91,7 +91,7 @@ function atualizarDimensoesLayout() {
   if (!partidaAtiva) return;
 
   renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
-  elementosUI.textoTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
+  elementosUI.textoTema.textContent = partidaAtiva.tabuleiro.tema.toUpperCase();
   renderizarSetasDirecoes(elementosUI.setasDirecoes, partidaAtiva.tabuleiro.palavrasColocadas);
 
   redesenharTodasAsCapsulas();
@@ -127,6 +127,10 @@ function redesenharTodasAsCapsulas() {
 }
 
 function atualizarListaUI() {
+  if (!partidaAtiva) return;
+  if (elementosUI.contadorProgresso) {
+    elementosUI.contadorProgresso.textContent = `${partidaAtiva.encontradas.size} / ${partidaAtiva.tabuleiro.palavras.length}`;
+  }
   renderizarLista(
     elementosUI.containerLista,
     partidaAtiva.tabuleiro.palavras,

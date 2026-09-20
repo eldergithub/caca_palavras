@@ -75,7 +75,7 @@ html, body {
     16px;
 }
 
-/* 1. Cantos superiores: pequenos e apagados (§5.1, §5.4) */
+/* 1. Cantos superiores: pílulas refinadas e discretas */
 .barra-topo {
   width: 100%;
   height: 44px;
@@ -83,27 +83,61 @@ html, body {
   justify-content: space-between;
   align-items: center;
   flex: 0 0 auto;
+  padding: 0 2px;
 }
 
 .btn-topo {
-  background: transparent;
-  border: none;
-  color: var(--cor-canto);
+  background: var(--bg-tabuleiro);
+  border: 1px solid rgba(22, 24, 28, 0.1);
+  border-radius: 22px;
+  color: #555047;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  padding: 8px 10px;
+  letter-spacing: 0.8px;
+  padding: 6px 14px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(22, 24, 28, 0.04);
+  transition: transform 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-topo:hover {
+  border-color: rgba(22, 24, 28, 0.18);
+  color: var(--cor-tinta);
+}
+
+.btn-topo:active {
+  transform: scale(0.96);
+  background-color: #f0eae0;
+  box-shadow: 0 1px 2px rgba(22, 24, 28, 0.03);
 }
 
 .btn-topo svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   stroke: currentColor;
+  fill: none;
+}
+
+.btn-topo.icone-apenas {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn-topo.icone-apenas svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
 }
 
 /* Ordem de leitura em retrato: ela lê primeiro o que procurar (tema e lista)
@@ -114,7 +148,7 @@ html, body {
 .area-tabuleiro-central { order: 3; }
 .barra-botoes { order: 4; }
 
-/* 2. Tabuleiro */
+/* 2. Tabuleiro: Estojo Nobre */
 .area-tabuleiro-central {
   display: flex;
   justify-content: center;
@@ -128,8 +162,12 @@ html, body {
 .container-grade {
   position: relative;
   background-color: var(--bg-tabuleiro);
-  border-radius: var(--raio-tabuleiro);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 2px rgba(22, 24, 28, 0.07),
+    0 3px 6px rgba(0, 0, 0, 0.03),
+    0 12px 28px rgba(35, 28, 20, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   touch-action: none;
 }
 
@@ -175,36 +213,84 @@ html, body {
   background-color: #d4a017;
 }
 
-/* 3. Rótulo de tema e direções do tabuleiro (§5.1) */
+/* 3. Rótulo de tema, progresso e direções do tabuleiro */
 .rotulo-tema {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  font-size: 14px;
-  letter-spacing: 2px;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.pill-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(22, 24, 28, 0.05);
+  border: 1px solid rgba(22, 24, 28, 0.09);
+  border-radius: 18px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: var(--cor-tema);
-  text-align: center;
+  color: #3e3831;
+  max-width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Setas das direções presentes neste tabuleiro: diz onde procurar,
-   sem entregar nenhuma palavra */
-.setas-direcoes {
-  font-size: 19px;
-  letter-spacing: 3px;
+.icone-tema-svg {
+  width: 15px;
+  height: 15px;
+  stroke: #665f55;
+  flex-shrink: 0;
+}
+
+.pill-status-grupo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.pill-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tabuleiro);
+  border: 1px solid rgba(22, 24, 28, 0.09);
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--cor-tinta);
-  line-height: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
-/* 4. Lista em 2 colunas, nunca rola (§5.3) */
+.pill-contador {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+.pill-direcoes {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #4a453e;
+  line-height: 1;
+  padding: 3px 8px;
+}
+
+/* 4. Lista de Fichas Táteis em 2 colunas, nunca rola (§5.3) */
 .container-lista {
   width: 100%;
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 12px;
+  column-gap: 10px;
+  row-gap: 6px;
   overflow: hidden;
 }
 
@@ -212,25 +298,59 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--altura-linha-lista, 40px);
+  gap: 6px;
+  height: calc(var(--altura-linha-lista, 40px) - 6px);
+  background-color: var(--bg-tabuleiro);
+  border: 1.5px solid rgba(22, 24, 28, 0.08);
+  border-radius: 12px;
+  box-shadow:
+    0 2px 4px rgba(22, 24, 28, 0.03),
+    0 1px 2px rgba(22, 24, 28, 0.02);
   letter-spacing: 0.5px;
   text-align: center;
-  border-radius: 8px;
   color: var(--cor-tinta);
   cursor: pointer;
+  padding: 0 10px;
+  box-sizing: border-box;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.item-palavra:hover:not(.encontrada) {
+  border-color: rgba(22, 24, 28, 0.2);
+  box-shadow: 0 3px 6px rgba(22, 24, 28, 0.06);
+}
+
+.item-palavra:active:not(.encontrada) {
+  transform: scale(0.97);
 }
 
 /* "É esta que eu estou procurando" (§5.6) */
 .item-palavra.marcada {
-  background-color: rgba(255, 210, 63, 0.35);
-  box-shadow: inset 0 0 0 2px var(--cor-selecao);
+  background-color: #fff8df;
+  border-color: #f5c533;
+  box-shadow: 0 0 0 2px rgba(255, 210, 63, 0.5), 0 4px 10px rgba(212, 160, 23, 0.15);
+  color: #16181c;
 }
 
 .item-palavra.encontrada {
+  background-color: rgba(22, 24, 28, 0.035);
+  border-color: rgba(22, 24, 28, 0.05);
   color: var(--cor-encontrada-lista);
+  box-shadow: none;
+  cursor: default;
+}
+
+.item-palavra.encontrada .texto-palavra {
   text-decoration: line-through;
   text-decoration-thickness: 2.5px;
-  cursor: default;
+}
+
+.item-palavra .check-palavra {
+  font-size: 0.85em;
+  color: var(--cor-verde-seguro);
+  font-weight: 900;
+  display: inline-flex;
 }
 
 /* 5. Botões grandes: os últimos a ceder (§5.2, §5.4) */
@@ -238,16 +358,16 @@ html, body {
   width: 100%;
   flex: 0 0 auto;
   display: flex;
-  gap: 16px;
+  gap: 14px;
 }
 
 .btn-grande {
   flex: 1;
   min-height: 64px;
-  background-color: var(--cor-botao-bg);
+  background: linear-gradient(180deg, #272c30 0%, #131618 100%);
   color: var(--cor-botao-texto);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--raio-botao);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
   font-family: inherit;
   font-size: 19px;
   font-weight: 700;
@@ -258,7 +378,11 @@ html, body {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
 }
 
 .btn-grande span { white-space: nowrap; }
@@ -269,13 +393,19 @@ html, body {
   .btn-grande svg { width: 22px; height: 22px; }
 }
 
-.btn-grande:active { transform: scale(0.98); }
+.btn-grande:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  filter: brightness(0.95);
+}
 
 .btn-grande svg {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   stroke: currentColor;
-  stroke-width: 2.5;
+  stroke-width: 2.4;
   fill: none;
 }
 
