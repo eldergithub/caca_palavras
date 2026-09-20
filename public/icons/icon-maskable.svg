@@ -1,94 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <style>
-      .letra {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 800;
-        font-size: 36px;
-        fill: #1E2A38;
-        text-anchor: middle;
-        dominant-baseline: central;
-      }
-      /* As letras de enchimento recuam para que as duas palavras se leiam
-         mesmo no ícone de 48 px; a tinta das destacadas nunca clareia. */
-      .enchimento { opacity: 0.42; }
-      .destaque { font-size: 40px; }
-    </style>
-  </defs>
-
-  <!-- Fundo total para máscara adaptativa (Android PWA Maskable) -->
-  <rect width="512" height="512" fill="#F8F5EC" />
-
-  <!-- Conteúdo escalado para a área segura circular (80%) -->
-  <g transform="translate(256, 256) scale(0.72) translate(-256, -256)">
-    <!-- Cápsulas: PALAVRA na vertical (coluna 5) e CRUZADA na horizontal (linha 4),
-       cruzando na letra A. -->
-  <rect x="290" y="62" width="44" height="380" rx="22" fill="#F4C542"/>
-  <rect x="66" y="230" width="380" height="44" rx="22" fill="#F4C542"/>
-
-  <g class="letra">
-    <!-- Linha 1 -->
-    <text class="enchimento" x="88" y="84">M</text>
-    <text class="enchimento" x="144" y="84">E</text>
-    <text class="enchimento" x="200" y="84">T</text>
-    <text class="enchimento" x="256" y="84">O</text>
-    <text class="destaque" x="312" y="84">P</text>
-    <text class="enchimento" x="368" y="84">I</text>
-    <text class="enchimento" x="424" y="84">S</text>
-
-    <!-- Linha 2 -->
-    <text class="enchimento" x="88" y="140">A</text>
-    <text class="enchimento" x="144" y="140">R</text>
-    <text class="enchimento" x="200" y="140">I</text>
-    <text class="enchimento" x="256" y="140">S</text>
-    <text class="destaque" x="312" y="140">A</text>
-    <text class="enchimento" x="368" y="140">O</text>
-    <text class="enchimento" x="424" y="140">C</text>
-
-    <!-- Linha 3 -->
-    <text class="enchimento" x="88" y="196">S</text>
-    <text class="enchimento" x="144" y="196">O</text>
-    <text class="enchimento" x="200" y="196">A</text>
-    <text class="enchimento" x="256" y="196">M</text>
-    <text class="destaque" x="312" y="196">L</text>
-    <text class="enchimento" x="368" y="196">E</text>
-    <text class="enchimento" x="424" y="196">N</text>
-
-    <!-- Linha 4 — CRUZADA -->
-    <text class="destaque" x="88" y="252">C</text>
-    <text class="destaque" x="144" y="252">R</text>
-    <text class="destaque" x="200" y="252">U</text>
-    <text class="destaque" x="256" y="252">Z</text>
-    <text class="destaque" x="312" y="252">A</text>
-    <text class="destaque" x="368" y="252">D</text>
-    <text class="destaque" x="424" y="252">A</text>
-
-    <!-- Linha 5 -->
-    <text class="enchimento" x="88" y="308">T</text>
-    <text class="enchimento" x="144" y="308">I</text>
-    <text class="enchimento" x="200" y="308">E</text>
-    <text class="enchimento" x="256" y="308">N</text>
-    <text class="destaque" x="312" y="308">V</text>
-    <text class="enchimento" x="368" y="308">A</text>
-    <text class="enchimento" x="424" y="308">O</text>
-
-    <!-- Linha 6 -->
-    <text class="enchimento" x="88" y="364">O</text>
-    <text class="enchimento" x="144" y="364">A</text>
-    <text class="enchimento" x="200" y="364">S</text>
-    <text class="enchimento" x="256" y="364">I</text>
-    <text class="destaque" x="312" y="364">R</text>
-    <text class="enchimento" x="368" y="364">M</text>
-    <text class="enchimento" x="424" y="364">E</text>
-
-    <!-- Linha 7 -->
-    <text class="enchimento" x="88" y="420">N</text>
-    <text class="enchimento" x="144" y="420">E</text>
-    <text class="enchimento" x="200" y="420">O</text>
-    <text class="enchimento" x="256" y="420">A</text>
-    <text class="destaque" x="312" y="420">A</text>
-    <text class="enchimento" x="368" y="420">S</text>
-    <text class="enchimento" x="424" y="420">I</text>
-  </g>
+  <!-- Variante maskable: fundo cheio e conteúdo dentro da área segura (80%). -->
+  <rect width="512" height="512" fill="#F8F5EC"/>
+  <g transform="translate(256,256) scale(0.72) translate(-256,-256)">
+    <rect x="290" y="62" width="44" height="380" rx="22" fill="#F4C542"/>
+    <rect x="66" y="230" width="380" height="44" rx="22" fill="#F4C542"/>
+    <text x="88" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">M</text>
+    <text x="144" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">E</text>
+    <text x="200" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">T</text>
+    <text x="256" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="312" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">P</text>
+    <text x="368" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">I</text>
+    <text x="424" y="98" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">S</text>
+    <text x="88" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">A</text>
+    <text x="144" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">R</text>
+    <text x="200" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">I</text>
+    <text x="256" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">S</text>
+    <text x="312" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">A</text>
+    <text x="368" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="424" y="154" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">C</text>
+    <text x="88" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">S</text>
+    <text x="144" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="200" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">A</text>
+    <text x="256" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">M</text>
+    <text x="312" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">L</text>
+    <text x="368" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">E</text>
+    <text x="424" y="210" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">N</text>
+    <text x="88" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">C</text>
+    <text x="144" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">R</text>
+    <text x="200" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">U</text>
+    <text x="256" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">Z</text>
+    <text x="312" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">A</text>
+    <text x="368" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">D</text>
+    <text x="424" y="266" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">A</text>
+    <text x="88" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">T</text>
+    <text x="144" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">I</text>
+    <text x="200" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">E</text>
+    <text x="256" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">N</text>
+    <text x="312" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">V</text>
+    <text x="368" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">A</text>
+    <text x="424" y="322" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="88" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="144" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">A</text>
+    <text x="200" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">S</text>
+    <text x="256" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">I</text>
+    <text x="312" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">R</text>
+    <text x="368" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">M</text>
+    <text x="424" y="378" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">E</text>
+    <text x="88" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">N</text>
+    <text x="144" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">E</text>
+    <text x="200" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">O</text>
+    <text x="256" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">A</text>
+    <text x="312" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38">A</text>
+    <text x="368" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">S</text>
+    <text x="424" y="434" font-family="Arial, Helvetica, Roboto, 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle" fill="#1E2A38" fill-opacity="0.42">I</text>
   </g>
 </svg>
