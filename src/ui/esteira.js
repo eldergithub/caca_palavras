@@ -100,7 +100,7 @@ export const INFORMACOES_FASES = {
   }
 };
 
-export function renderizarEsteiraTopo(containerEsteira, { faseAtual, maxFaseDesbloqueada, onAbrirMapaFases }) {
+export function renderizarEsteiraTopo(containerEsteira, { faseAtual, maxFaseDesbloqueada, tema, onAbrirMapaFases }) {
   if (!containerEsteira) return;
 
   const info = INFORMACOES_FASES[faseAtual] || INFORMACOES_FASES[1];
@@ -108,7 +108,7 @@ export function renderizarEsteiraTopo(containerEsteira, { faseAtual, maxFaseDesb
   let nodesHtml = '';
   for (let i = 1; i <= 12; i++) {
     const isAtual = i === faseAtual;
-    const isConcluida = i < faseAtual || i <= maxFaseDesbloqueada && i !== faseAtual;
+    const isConcluida = i < faseAtual || (i <= maxFaseDesbloqueada && i !== faseAtual);
     const isBloqueada = i > maxFaseDesbloqueada;
 
     let classeStatus = 'esteira-no';
@@ -131,14 +131,17 @@ export function renderizarEsteiraTopo(containerEsteira, { faseAtual, maxFaseDesb
     `;
   }
 
+  const rotuloTema = tema ? tema.toUpperCase() : 'CARREGANDO...';
+
   containerEsteira.innerHTML = `
-    <div class="esteira-wrapper" id="btn-esteira-topo" role="button" aria-label="Abrir esteira de fases">
+    <div class="esteira-wrapper" id="btn-esteira-topo" role="button" aria-label="Abrir esteira de fases" title="Toque para ver todas as 12 fases">
       <div class="esteira-trilha">
         ${nodesHtml}
       </div>
       <div class="esteira-detalhes">
         <span class="fase-badge">${info.icone} FASE ${faseAtual}: ${info.nome}</span>
-        <span class="fase-direcoes">Direções: <strong>${info.direcoesTexto}</strong></span>
+        <span class="fase-tema-tag" id="rotulo-tema">TEMA: ${rotuloTema}</span>
+        <span class="fase-direcoes" id="dica-rapida" title="Direções válidas">🧭 ${info.direcoesTexto}</span>
       </div>
     </div>
   `;

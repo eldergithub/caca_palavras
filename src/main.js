@@ -93,10 +93,13 @@ function atualizarDimensoesLayout() {
   const nDesejado = partidaAtiva ? partidaAtiva.tabuleiro.n : 10;
   configLayout = calcularLayout(window.innerWidth, window.innerHeight, nDesejado, ajustes.deltaFontePx);
 
-  // Renderiza Esteira de Fases no Topo
+  const tema = partidaAtiva ? partidaAtiva.tabuleiro.tema : null;
+
+  // Renderiza Esteira de Fases no Topo com tema integrado
   renderizarEsteiraTopo(elementosUI.containerEsteira, {
     faseAtual: progressoFases.faseAtual,
     maxFaseDesbloqueada: progressoFases.maxFaseDesbloqueada,
+    tema,
     onAbrirMapaFases: () => {
       abrirModalEsteiraFases(elementosUI.camadaModal, {
         faseAtual: progressoFases.faseAtual,
@@ -113,9 +116,13 @@ function atualizarDimensoesLayout() {
   if (partidaAtiva) {
     renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
 
+    if (elementosUI.rotuloTema) {
+      elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
+    }
     const infoFase = INFORMACOES_FASES[progressoFases.faseAtual] || INFORMACOES_FASES[1];
-    elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
-    elementosUI.dicaRapida.textContent = `Procure nas direções: ${infoFase.direcoesTexto}`;
+    if (elementosUI.dicaRapida) {
+      elementosUI.dicaRapida.textContent = `🧭 ${infoFase.direcoesTexto}`;
+    }
 
     redesenharTodasAsCapsulas();
     atualizarListaUI();
@@ -394,9 +401,13 @@ configurarControles(elementosUI, {
   }
 });
 
-// Redimensionamento de janela resiliente
+// Redimensionamento de janela resiliente com ressincronização do capturador tátil
 window.addEventListener('resize', () => {
   atualizarDimensoesLayout();
+  if (capturadorSelecao) {
+    capturadorSelecao.destruir();
+    capturadorSelecao = iniciarCapturaSelecao(elementosUI, configLayout, aoResolverSelecao);
+  }
 });
 
 // 7. Arranque: Recupera partida guardada ou começa nova (§7.6)

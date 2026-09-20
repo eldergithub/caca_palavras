@@ -15,10 +15,30 @@
     <div id="app"></div>
     <script type="module" src="./src/main.js"></script>
     <script>
-      // Registro do Service Worker (§11.1)
+      // Registro do Service Worker com recarga automática ao detectar atualização (§11.1)
       if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        let recarregando = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!recarregando) {
+            recarregando = true;
+            window.location.reload();
+          }
+        });
+
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {});
+          navigator.serviceWorker.register('./sw.js', { scope: './' })
+            .then((reg) => {
+              reg.update().catch(() => {});
+            })
+            .catch(() => {});
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            navigator.serviceWorker.getRegistration().then((reg) => {
+              if (reg) reg.update().catch(() => {});
+            });
+          }
         });
       }
     </script>
