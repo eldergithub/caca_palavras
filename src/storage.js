@@ -6,6 +6,7 @@ const CHAVE_PARTIDA = 'cp_partida_v1';
 const CHAVE_ESCADA = 'cp_escada_v1';
 const CHAVE_STATS = 'cp_stats_v1';
 const CHAVE_AJUSTES = 'cp_ajustes_v1';
+const CHAVE_FASES = 'cp_fases_v1';
 
 export function salvarPartida(partida) {
   try {
@@ -68,6 +69,26 @@ export function carregarEscada() {
   }
 }
 
+export function salvarProgressoFases(dadosFases) {
+  try {
+    localStorage.setItem(CHAVE_FASES, JSON.stringify(dadosFases));
+  } catch {}
+}
+
+export function carregarProgressoFases() {
+  try {
+    const raw = localStorage.getItem(CHAVE_FASES);
+    if (!raw) return { faseAtual: 1, maxFaseDesbloqueada: 1 };
+    const parsed = JSON.parse(raw);
+    return {
+      faseAtual: Math.max(1, Math.min(12, Number(parsed?.faseAtual || 1))),
+      maxFaseDesbloqueada: Math.max(1, Math.min(12, Number(parsed?.maxFaseDesbloqueada || 1)))
+    };
+  } catch {
+    return { faseAtual: 1, maxFaseDesbloqueada: 1 };
+  }
+}
+
 export function salvarStats(stats) {
   try {
     localStorage.setItem(CHAVE_STATS, JSON.stringify(stats));
@@ -97,9 +118,13 @@ export function salvarAjustes(ajustes) {
 export function carregarAjustes() {
   try {
     const raw = localStorage.getItem(CHAVE_AJUSTES);
-    if (!raw) return { deltaFontePx: 0 };
-    return JSON.parse(raw);
+    if (!raw) return { deltaFontePx: 0, somAtivo: true };
+    const parsed = JSON.parse(raw);
+    return {
+      deltaFontePx: Number(parsed?.deltaFontePx || 0),
+      somAtivo: parsed?.somAtivo !== false
+    };
   } catch {
-    return { deltaFontePx: 0 };
+    return { deltaFontePx: 0, somAtivo: true };
   }
 }

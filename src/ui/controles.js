@@ -3,9 +3,11 @@
 
 import { exibirDialogo } from './dialogo.js';
 import { abrirModalAjustes } from './ajustes.js';
+import { abrirModalInstrucoes } from './instrucoes.js';
+import { alternarSom, isSomAtivo } from './audio.js';
 
 export function configurarControles(elementos, contextoJogo) {
-  const { btnDica, btnNovo, btnSair, btnAjustes, camadaModal } = elementos;
+  const { btnDica, btnNovo, btnSair, btnAjustes, btnInstrucoes, btnSom, iconeSom, camadaModal } = elementos;
 
   // 1. Botão DICA (§8)
   btnDica.addEventListener('click', () => {
@@ -44,7 +46,27 @@ export function configurarControles(elementos, contextoJogo) {
     });
   });
 
-  // 4. Interceptação do botão Voltar do Android (§5.4, §11.3)
+  // 4. Botão INSTRUÇÕES (Como Jogar)
+  if (btnInstrucoes) {
+    btnInstrucoes.addEventListener('click', () => {
+      abrirModalInstrucoes(camadaModal);
+    });
+  }
+
+  // 5. Botão SOM (Alternar áudio)
+  if (btnSom) {
+    btnSom.addEventListener('click', () => {
+      const novoEstado = alternarSom();
+      if (iconeSom) {
+        iconeSom.textContent = novoEstado ? '🔊' : '🔇';
+      }
+      if (contextoJogo.aoMudarSom) {
+        contextoJogo.aoMudarSom(novoEstado);
+      }
+    });
+  }
+
+  // 6. Interceptação do botão Voltar do Android (§5.4, §11.3)
   try {
     history.pushState({ app: 'caca-palavras' }, '');
     window.addEventListener('popstate', () => {
@@ -53,7 +75,7 @@ export function configurarControles(elementos, contextoJogo) {
     });
   } catch {}
 
-  // 5. Engrenagem para o cuidador (§5.4)
+  // 7. Engrenagem para o cuidador (§5.4)
   btnAjustes.addEventListener('click', () => {
     contextoJogo.aoAbrirAjustes();
   });

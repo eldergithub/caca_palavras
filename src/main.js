@@ -1,5 +1,5 @@
 // src/main.js
-// Ponto de entrada principal do Caça-Palavras. Liga Core, UI, Persistência e Wake Lock (§14).
+// Ponto de entrada principal do Caça-Palavras com Esteira de Fases, UI responsiva e Instruções.
 
 import { calcularLayout } from './ui/layout.js';
 import {
@@ -7,13 +7,21 @@ import {
   renderizarGrade,
   desenharCapsulaSVG,
   renderizarLista,
-  obterCorCiclo
+  obterCorCiclo,
+  exibirToast
 } from './ui/render.js';
 import { iniciarCapturaSelecao } from './ui/selecao.js';
 import { configurarControles } from './ui/controles.js';
 import { iniciarDedoFantasma } from './ui/ensino.js';
 import { exibirVitoria } from './ui/vitoria.js';
 import { abrirModalAjustes } from './ui/ajustes.js';
+import { exibirTelaSaida } from './ui/dialogo.js';
+import { renderizarEsteiraTopo, abrirModalEsteiraFases, INFORMACOES_FASES } from './ui/esteira.js';
+import {
+  configurarSom,
+  tocarSomPalavraEncontrada,
+  tocarSomPalavraReal
+} from './ui/audio.js';
 
 import { gerarTabuleiro } from './core/gerador.js';
 import { criarPartida } from './core/partida.js';
@@ -29,6 +37,8 @@ import {
   limparPartidaSalva,
   salvarEscada,
   carregarEscada,
+  salvarProgressoFases,
+  carregarProgressoFases,
   salvarStats,
   carregarStats,
   salvarAjustes,
@@ -57,7 +67,14 @@ const elementosUI = criarEstruturaUI(appEl);
 
 let ajustes = carregarAjustes();
 let estadoEscada = carregarEscada() || criarEstadoEscadaInicial();
+let progressoFases = carregarProgressoFases();
 let stats = carregarStats();
+
+// Sincroniza áudio
+configurarSom(ajustes.somAtivo !== false);
+if (elementosUI.iconeSom) {
+  elementosUI.iconeSom.textContent = ajustes.somAtivo !== false ? '🔊' : '🔇';
+}
 
 let partidaAtiva = null;
 let configLayout = null;
@@ -76,10 +93,29 @@ function atualizarDimensoesLayout() {
   const nDesejado = partidaAtiva ? partidaAtiva.tabuleiro.n : 10;
   configLayout = calcularLayout(window.innerWidth, window.innerHeight, nDesejado, ajustes.deltaFontePx);
 
+  // Renderiza Esteira de Fases no Topo
+  renderizarEsteiraTopo(elementosUI.containerEsteira, {
+    faseAtual: progressoFases.faseAtual,
+    maxFaseDesbloqueada: progressoFases.maxFaseDesbloqueada,
+    onAbrirMapaFases: () => {
+      abrirModalEsteiraFases(elementosUI.camadaModal, {
+        faseAtual: progressoFases.faseAtual,
+        maxFaseDesbloqueada: progressoFases.maxFaseDesbloqueada,
+        onSelecionarFase: (faseEscolhida) => {
+          progressoFases.faseAtual = faseEscolhida;
+          salvarProgressoFases(progressoFases);
+          iniciarPartida(null, faseEscolhida);
+        }
+      });
+    }
+  });
+
   if (partidaAtiva) {
     renderizarGrade(elementosUI, partidaAtiva.tabuleiro.grade, configLayout);
-    elementosUI.rotuloTema.style.display = configLayout.exibirTema ? 'block' : 'none';
+
+    const infoFase = INFORMACOES_FASES[progressoFases.faseAtual] || INFORMACOES_FASES[1];
     elementosUI.rotuloTema.textContent = `TEMA: ${partidaAtiva.tabuleiro.tema.toUpperCase()}`;
+    elementosUI.dicaRapida.textContent = `Procure nas direções: ${infoFase.direcoesTexto}`;
 
     redesenharTodasAsCapsulas();
     atualizarListaUI();
@@ -118,25 +154,26 @@ function redesenharTodasAsCapsulas() {
 
 function atualizarListaUI() {
   renderizarLista(
-    elementosUI.containerLista,
+    elementosUI,
     partidaAtiva.tabuleiro.palavras,
     partidaAtiva.encontradas,
     partidaAtiva.palavraMarcada,
     (palavraClicada) => {
       partidaAtiva.marcarPalavra(palavraClicada);
       atualizarListaUI();
+      exibirToast(elementosUI.toastNotificacao, `Buscando: ${palavraClicada}`);
     }
   );
 }
 
 // 4. Inicialização de Partida
-function iniciarPartida(estadoSalvo = null) {
+function iniciarPartida(estadoSalvo = null, nivelForcado = null) {
   if (tutorialFantasma) {
     tutorialFantasma.parar();
     tutorialFantasma = null;
   }
 
-  const nivelEfetivo = obterNivelEfetivo(estadoEscada);
+  const nivelDaFase = nivelForcado || progressoFases.faseAtual || obterNivelEfetivo(estadoEscada);
   const layoutPrevio = calcularLayout(window.innerWidth, window.innerHeight, 10, ajustes.deltaFontePx);
 
   let tabuleiro = null;
@@ -148,9 +185,9 @@ function iniciarPartida(estadoSalvo = null) {
 
   if (!tabuleiro) {
     // Gera nova semente e nova partida
-    const semente = hash32(Date.now(), stats.concluidas, nivelEfetivo, Math.random());
+    const semente = hash32(Date.now(), stats.concluidas, nivelDaFase, Math.random());
     const reservaFallback = reservaCache ? reservaCache[Math.floor(Math.random() * reservaCache.length)] : null;
-    tabuleiro = gerarTabuleiro(semente, layoutPrevio.nMax, nivelEfetivo, null, reservaFallback);
+    tabuleiro = gerarTabuleiro(semente, layoutPrevio.nMax, nivelDaFase, null, reservaFallback);
   }
 
   partidaAtiva = criarPartida(tabuleiro, estadoSalvo);
@@ -174,10 +211,13 @@ function aoResolverSelecao(segmento) {
   const resultado = partidaAtiva.resolverSelecao(segmento);
 
   if (resultado.desfecho === 'acertou') {
-    // 1. Acertou: cápsula no ciclo de cores, vibração 40ms, riscar da lista (§3.4)
+    // 1. Acertou: som relaxante, cápsula no ciclo de cores, vibração 40ms, riscar da lista (§3.4)
+    tocarSomPalavraEncontrada();
     if ('vibrate' in navigator) {
       try { navigator.vibrate(40); } catch {}
     }
+
+    exibirToast(elementosUI.toastNotificacao, `Muito bem! Encontrou ${resultado.palavra}!`);
 
     if (tutorialFantasma) {
       tutorialFantasma.parar();
@@ -191,17 +231,19 @@ function aoResolverSelecao(segmento) {
     salvarPartida(partidaAtiva.obterDadosParaSalvar());
 
     if (resultado.completo) {
-      // Vitória! (§9.7)
+      // Vitória da Fase! (§9.7)
       finalizarPartida(false);
     }
   } else if (resultado.desfecho === 'palavra_real') {
-    // 2. Palavra real fora da lista: lampejo âmbar de 500 ms (§3.4)
+    // 2. Palavra real fora da lista: som discreto e lampejo âmbar de 500 ms (§3.4)
+    tocarSomPalavraReal();
+    exibirToast(elementosUI.toastNotificacao, `Palavra válida, mas não está na lista!`);
     const elFlash = desenharCapsulaSVG(elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-real-ambar)', null, configLayout);
     setTimeout(() => {
       if (elFlash) elFlash.remove();
     }, 500);
   } else if (resultado.desfecho === 'errou') {
-    // 4. Errou: cápsula cinza-neutra balança 200 ms e some. Sem vermelho, sem som (§3.4)
+    // 4. Errou: cápsula cinza-neutra balança 200 ms e some. Sem som estridente (§3.4)
     const elErro = desenharCapsulaSVG(elementosUI.svgCapsulas, resultado.segmento, 'var(--cor-erro-cinza)', null, configLayout);
     elementosUI.containerGrade.classList.add('anim-erro');
     setTimeout(() => {
@@ -214,10 +256,17 @@ function aoResolverSelecao(segmento) {
 function finalizarPartida(abandonada = false) {
   const segundos = partidaAtiva.obterTempoGastoSegundos();
   const dicas = partidaAtiva.dicasUsadas;
+  const faseAtual = progressoFases.faseAtual;
 
   if (!abandonada) {
     stats.concluidas++;
     salvarStats(stats);
+
+    // Desbloqueia a próxima fase na esteira se venceu a mais alta
+    if (faseAtual === progressoFases.maxFaseDesbloqueada && faseAtual < 12) {
+      progressoFases.maxFaseDesbloqueada = faseAtual + 1;
+    }
+    salvarProgressoFases(progressoFases);
   }
 
   // Atualiza escada de dificuldade (§6.3)
@@ -231,8 +280,16 @@ function finalizarPartida(abandonada = false) {
 
   if (!abandonada) {
     exibirVitoria(elementosUI.camadaModal, {
-      onJogarOutra: () => {
-        iniciarPartida(null);
+      faseAtual,
+      tempoSegundos: segundos,
+      dicasUsadas: dicas,
+      onAvancarFase: (proximaFase) => {
+        progressoFases.faseAtual = proximaFase;
+        salvarProgressoFases(progressoFases);
+        iniciarPartida(null, proximaFase);
+      },
+      onJogarNovamente: (mesmaFase) => {
+        iniciarPartida(null, mesmaFase);
       }
     });
   }
@@ -247,6 +304,9 @@ configurarControles(elementosUI, {
 
     if (res.degrau === 1) {
       // 1º Toque: primeira letra pulsa em dourado (§8)
+      if (elementosUI.subtextoDica) {
+        elementosUI.subtextoDica.textContent = '2º Toque: Direção';
+      }
       const cel = res.celulas[0];
       const celEl = document.getElementById(`cel-${cel.l}-${cel.c}`);
       if (celEl) {
@@ -258,9 +318,15 @@ configurarControles(elementosUI, {
       }
     } else if (res.degrau === 2) {
       // 2º Toque: direção estende 2 células (§8)
+      if (elementosUI.subtextoDica) {
+        elementosUI.subtextoDica.textContent = '3º Toque: Revelar';
+      }
       desenharCapsulaSVG(elementosUI.svgCapsulas, res.celulas, '#ffd9a0', null, configLayout);
     } else if (res.degrau === 3) {
       // 3º Toque: palavra inteira revelada e riscada (§8)
+      if (elementosUI.subtextoDica) {
+        elementosUI.subtextoDica.textContent = '1º Toque: 1ª Letra';
+      }
       redesenharTodasAsCapsulas();
       atualizarListaUI();
       if (res.completo) {
@@ -282,14 +348,28 @@ configurarControles(elementosUI, {
       const menosQueMetade = partidaAtiva.encontradas.size < metade;
       finalizarPartida(menosQueMetade);
     }
-    iniciarPartida(null);
+    iniciarPartida(null, progressoFases.faseAtual);
   },
 
   aoSair: () => {
     if (partidaAtiva) {
       salvarPartida(partidaAtiva.obterDadosParaSalvar());
     }
-    try { window.close(); } catch {}
+    try {
+      window.close();
+    } catch {}
+
+    // Exibe tela amigável caso o navegador impeça o fechamento da aba por script
+    setTimeout(() => {
+      exibirTelaSaida(elementosUI.camadaModal, () => {
+        // Callback ao clicar em Voltar ao Jogo
+      });
+    }, 100);
+  },
+
+  aoMudarSom: (novoSomAtivo) => {
+    ajustes.somAtivo = novoSomAtivo;
+    salvarAjustes(ajustes);
   },
 
   aoAbrirAjustes: () => {
@@ -305,6 +385,10 @@ configurarControles(elementosUI, {
       onMudarNivel: (delta) => {
         estadoEscada.ajusteManual = (estadoEscada.ajusteManual || 0) + delta;
         salvarEscada(estadoEscada);
+        progressoFases.faseAtual = Math.max(1, Math.min(12, progressoFases.faseAtual + delta));
+        progressoFases.maxFaseDesbloqueada = Math.max(progressoFases.maxFaseDesbloqueada, progressoFases.faseAtual);
+        salvarProgressoFases(progressoFases);
+        iniciarPartida(null, progressoFases.faseAtual);
       }
     });
   }
@@ -317,4 +401,4 @@ window.addEventListener('resize', () => {
 
 // 7. Arranque: Recupera partida guardada ou começa nova (§7.6)
 const partidaSalva = carregarPartida();
-iniciarPartida(partidaSalva);
+iniciarPartida(partidaSalva, partidaSalva?.nivel || progressoFases.faseAtual);
