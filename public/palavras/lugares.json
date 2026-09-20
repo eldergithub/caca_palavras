@@ -1,0 +1,227 @@
+[
+  {
+    "t": "CIDADE",
+    "n": "CIDADE",
+    "nv": 1
+  },
+  {
+    "t": "ALDEIA",
+    "n": "ALDEIA",
+    "nv": 2
+  },
+  {
+    "t": "VILA",
+    "n": "VILA",
+    "nv": 1
+  },
+  {
+    "t": "BAIRRO",
+    "n": "BAIRRO",
+    "nv": 1
+  },
+  {
+    "t": "PRAÇA",
+    "n": "PRACA",
+    "nv": 1
+  },
+  {
+    "t": "AVENIDA",
+    "n": "AVENIDA",
+    "nv": 1
+  },
+  {
+    "t": "ALAMEDA",
+    "n": "ALAMEDA",
+    "nv": 2
+  },
+  {
+    "t": "TRAVESSA",
+    "n": "TRAVESSA",
+    "nv": 2
+  },
+  {
+    "t": "BECO",
+    "n": "BECO",
+    "nv": 2
+  },
+  {
+    "t": "ESQUINA",
+    "n": "ESQUINA",
+    "nv": 1
+  },
+  {
+    "t": "PARQUE",
+    "n": "PARQUE",
+    "nv": 1
+  },
+  {
+    "t": "JARDIM",
+    "n": "JARDIM",
+    "nv": 1
+  },
+  {
+    "t": "PRAIA",
+    "n": "PRAIA",
+    "nv": 1
+  },
+  {
+    "t": "LITORAL",
+    "n": "LITORAL",
+    "nv": 2
+  },
+  {
+    "t": "PORTO",
+    "n": "PORTO",
+    "nv": 2
+  },
+  {
+    "t": "FAROL",
+    "n": "FAROL",
+    "nv": 2
+  },
+  {
+    "t": "FATOR",
+    "n": "FATOR",
+    "nv": 2
+  },
+  {
+    "t": "ESTAÇÃO",
+    "n": "ESTACAO",
+    "nv": 2
+  },
+  {
+    "t": "FERROVIA",
+    "n": "FERROVIA",
+    "nv": 2
+  },
+  {
+    "t": "AEROPORTO",
+    "n": "AEROPORTO",
+    "nv": 2
+  },
+  {
+    "t": "IGREJA",
+    "n": "IGREJA",
+    "nv": 1
+  },
+  {
+    "t": "CAPELA",
+    "n": "CAPELA",
+    "nv": 2
+  },
+  {
+    "t": "CATEDRAL",
+    "n": "CATEDRAL",
+    "nv": 2
+  },
+  {
+    "t": "CONVENTO",
+    "n": "CONVENTO",
+    "nv": 3
+  },
+  {
+    "t": "MUSEU",
+    "n": "MUSEU",
+    "nv": 2
+  },
+  {
+    "t": "TEATRO",
+    "n": "TEATRO",
+    "nv": 2
+  },
+  {
+    "t": "CINEMA",
+    "n": "CINEMA",
+    "nv": 1
+  },
+  {
+    "t": "BIBLIOTECA",
+    "n": "BIBLIOTECA",
+    "nv": 2
+  },
+  {
+    "t": "LIVRARIA",
+    "n": "LIVRARIA",
+    "nv": 2
+  },
+  {
+    "t": "MERCADO",
+    "n": "MERCADO",
+    "nv": 1
+  },
+  {
+    "t": "PADARIA",
+    "n": "PADARIA",
+    "nv": 1
+  },
+  {
+    "t": "FARMÁCIA",
+    "n": "FARMACIA",
+    "nv": 1
+  },
+  {
+    "t": "HOSPITAL",
+    "n": "HOSPITAL",
+    "nv": 1
+  },
+  {
+    "t": "ESCOLA",
+    "n": "ESCOLA",
+    "nv": 1
+  },
+  {
+    "t": "COLÉGIO",
+    "n": "COLEGIO",
+    "nv": 2
+  },
+  {
+    "t": "FACULDADE",
+    "n": "FACULDADE",
+    "nv": 2
+  },
+  {
+    "t": "CASTELO",
+    "n": "CASTELO",
+    "nv": 2
+  },
+  {
+    "t": "FORTALEZA",
+    "n": "FORTALEZA",
+    "nv": 2
+  },
+  {
+    "t": "PALÁCIO",
+    "n": "PALACIO",
+    "nv": 2
+  },
+  {
+    "t": "SOBRADO",
+    "n": "SOBRADO",
+    "nv": 2
+  },
+  {
+    "t": "CHÁCARA",
+    "n": "CHACARA",
+    "nv": 2
+  },
+  {
+    "t": "SÍTIO",
+    "n": "SITIO",
+    "nv": 1
+  },
+  {
+    "t": "FAZENDA",
+    "n": "FAZENDA",
+    "nv": 1
+  },
+  {
+    "t": "MIRANTE",
+    "n": "MIRANTE",
+    "nv": 3
+  },
+  {
+    "t": "PLANALTO",
+    "n": "PLANALTO",
+    "nv": 3
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "t": "CANÇÃO",
+    "n": "CANCAO",
+    "nv": 1
+  },
+  {
+    "t": "CÂNTICO",
+    "n": "CANTICO",
+    "nv": 2
+  },
+  {
+    "t": "MELODIA",
+    "n": "MELODIA",
+    "nv": 2
+  },
+  {
+    "t": "RITMO",
+    "n": "RITMO",
+    "nv": 2
+  },
+  {
+    "t": "COMPASSO",
+    "n": "COMPASSO",
+    "nv": 2
+  },
+  {
+    "t": "ACORDE",
+    "n": "ACORDE",
+    "nv": 2
+  },
+  {
+    "t": "NOTA",
+    "n": "NOTA",
+    "nv": 1
+  },
+  {
+    "t": "ESCALA",
+    "n": "ESCALA",
+    "nv": 2
+  },
+  {
+    "t": "CLAVE",
+    "n": "CLAVE",
+    "nv": 2
+  },
+  {
+    "t": "PARTITURA",
+    "n": "PARTITURA",
+    "nv": 2
+  },
+  {
+    "t": "ORQUESTRA",
+    "n": "ORQUESTRA",
+    "nv": 2
+  },
+  {
+    "t": "SINFONIA",
+    "n": "SINFONIA",
+    "nv": 2
+  },
+  {
+    "t": "CONCERTO",
+    "n": "CONCERTO",
+    "nv": 2
+  },
+  {
+    "t": "SONATA",
+    "n": "SONATA",
+    "nv": 2
+  },
+  {
+    "t": "PRELÚDIO",
+    "n": "PRELUDIO",
+    "nv": 3
+  },
+  {
+    "t": "ÓPERA",
+    "n": "OPERA",
+    "nv": 2
+  },
+  {
+    "t": "CORAL",
+    "n": "CORAL",
+    "nv": 2
+  },
+  {
+    "t": "CORO",
+    "n": "CORO",
+    "nv": 2
+  },
+  {
+    "t": "SOPRANO",
+    "n": "SOPRANO",
+    "nv": 3
+  },
+  {
+    "t": "TENOR",
+    "n": "TENOR",
+    "nv": 3
+  },
+  {
+    "t": "BARÍTONO",
+    "n": "BARITONO",
+    "nv": 3
+  },
+  {
+    "t": "PIANO",
+    "n": "PIANO",
+    "nv": 1
+  },
+  {
+    "t": "VIOLÃO",
+    "n": "VIOLAO",
+    "nv": 1
+  },
+  {
+    "t": "VIOLINO",
+    "n": "VIOLINO",
+    "nv": 2
+  },
+  {
+    "t": "VIOLA",
+    "n": "VIOLA",
+    "nv": 2
+  },
+  {
+    "t": "VIOLONCELO",
+    "n": "VIOLONCELO",
+    "nv": 2
+  },
+  {
+    "t": "FLAUTA",
+    "n": "FLAUTA",
+    "nv": 1
+  },
+  {
+    "t": "CLARINETE",
+    "n": "CLARINETE",
+    "nv": 2
+  },
+  {
+    "t": "OBOÉ",
+    "n": "OBOE",
+    "nv": 3
+  },
+  {
+    "t": "FAGOTE",
+    "n": "FAGOTE",
+    "nv": 3
+  },
+  {
+    "t": "TROMPETE",
+    "n": "TROMPETE",
+    "nv": 2
+  },
+  {
+    "t": "TROMBONE",
+    "n": "TROMBONE",
+    "nv": 2
+  },
+  {
+    "t": "TUBA",
+    "n": "TUBA",
+    "nv": 2
+  },
+  {
+    "t": "HARPA",
+    "n": "HARPA",
+    "nv": 2
+  },
+  {
+    "t": "TAMBOR",
+    "n": "TAMBOR",
+    "nv": 1
+  },
+  {
+    "t": "TIMPÃO",
+    "n": "TIMPAO",
+    "nv": 3
+  },
+  {
+    "t": "ACORDEOM",
+    "n": "ACORDEOM",
+    "nv": 2
+  },
+  {
+    "t": "GAITA",
+    "n": "GAITA",
+    "nv": 2
+  },
+  {
+    "t": "SOLFEJO",
+    "n": "SOLFEJO",
+    "nv": 3
+  },
+  {
+    "t": "BATUTA",
+    "n": "BATUTA",
+    "nv": 3
+  },
+  {
+    "t": "ENSAIO",
+    "n": "ENSAIO",
+    "nv": 2
+  },
+  {
+    "t": "BALADA",
+    "n": "BALADA",
+    "nv": 2
+  },
+  {
+    "t": "ARRANJO",
+    "n": "ARRANJO",
+    "nv": 2
+  },
+  {
+    "t": "TIMBRE",
+    "n": "TIMBRE",
+    "nv": 3
+  }
+]

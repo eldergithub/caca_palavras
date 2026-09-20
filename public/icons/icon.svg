@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Fundo suave e arredondado -->
+  <rect width="512" height="512" rx="100" fill="#efe9dd"/>
+  
+  <!-- Tabuleiro interior -->
+  <rect x="56" y="56" width="400" height="400" rx="36" fill="#fdfcf7" filter="drop-shadow(0 12px 24px rgba(0,0,0,0.08))"/>
+  
+  <!-- Cápsula de destaque amarela/dourada em volta da palavra C A Ç A -->
+  <rect x="88" y="160" width="336" height="76" rx="38" fill="#ffd23f"/>
+
+  <!-- Grade de letras de alto contraste #16181c -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="52" fill="#16181c" text-anchor="middle" dominant-baseline="central">
+    <!-- Linha 1 -->
+    <text x="130" y="116">P</text>
+    <text x="214" y="116">A</text>
+    <text x="298" y="116">Z</text>
+    <text x="382" y="116">O</text>
+
+    <!-- Linha 2 (Destaque: C A Ç A) -->
+    <text x="130" y="198">C</text>
+    <text x="214" y="198">A</text>
+    <text x="298" y="198">C</text>
+    <text x="382" y="198">A</text>
+
+    <!-- Linha 3 -->
+    <text x="130" y="280">V</text>
+    <text x="214" y="280">I</text>
+    <text x="298" y="280">D</text>
+    <text x="382" y="280">A</text>
+
+    <!-- Linha 4 -->
+    <text x="130" y="362">R</text>
+    <text x="214" y="362">O</text>
+    <text x="298" y="362">S</text>
+    <text x="382" y="362">A</text>
+  </g>
+</svg>

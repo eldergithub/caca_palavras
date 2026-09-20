@@ -1,0 +1,222 @@
+[
+  {
+    "t": "ÁRVORE",
+    "n": "ARVORE",
+    "nv": 1
+  },
+  {
+    "t": "FLOR",
+    "n": "FLOR",
+    "nv": 1
+  },
+  {
+    "t": "FOLHA",
+    "n": "FOLHA",
+    "nv": 1
+  },
+  {
+    "t": "GALHO",
+    "n": "GALHO",
+    "nv": 1
+  },
+  {
+    "t": "TRONCO",
+    "n": "TRONCO",
+    "nv": 1
+  },
+  {
+    "t": "RAIZ",
+    "n": "RAIZ",
+    "nv": 1
+  },
+  {
+    "t": "SEMENTE",
+    "n": "SEMENTE",
+    "nv": 1
+  },
+  {
+    "t": "BROTO",
+    "n": "BROTO",
+    "nv": 2
+  },
+  {
+    "t": "ROSA",
+    "n": "ROSA",
+    "nv": 1
+  },
+  {
+    "t": "ROSEIRA",
+    "n": "ROSEIRA",
+    "nv": 2
+  },
+  {
+    "t": "ORQUÍDEA",
+    "n": "ORQUIDEA",
+    "nv": 2
+  },
+  {
+    "t": "MARGARIDA",
+    "n": "MARGARIDA",
+    "nv": 1
+  },
+  {
+    "t": "VIOLETA",
+    "n": "VIOLETA",
+    "nv": 2
+  },
+  {
+    "t": "HORTÊNSIA",
+    "n": "HORTENSIA",
+    "nv": 2
+  },
+  {
+    "t": "JASMIM",
+    "n": "JASMIM",
+    "nv": 2
+  },
+  {
+    "t": "LÍRIO",
+    "n": "LIRIO",
+    "nv": 2
+  },
+  {
+    "t": "GIRASSOL",
+    "n": "GIRASSOL",
+    "nv": 1
+  },
+  {
+    "t": "SAMAMBAIA",
+    "n": "SAMAMBAIA",
+    "nv": 2
+  },
+  {
+    "t": "AVENCA",
+    "n": "AVENCA",
+    "nv": 2
+  },
+  {
+    "t": "MUSGO",
+    "n": "MUSGO",
+    "nv": 2
+  },
+  {
+    "t": "LÍQUEN",
+    "n": "LIQUEN",
+    "nv": 3
+  },
+  {
+    "t": "BAMBU",
+    "n": "BAMBU",
+    "nv": 2
+  },
+  {
+    "t": "PALMEIRA",
+    "n": "PALMEIRA",
+    "nv": 1
+  },
+  {
+    "t": "COQUEIRO",
+    "n": "COQUEIRO",
+    "nv": 1
+  },
+  {
+    "t": "ACÁCIA",
+    "n": "ACACIA",
+    "nv": 2
+  },
+  {
+    "t": "JACARANDÁ",
+    "n": "JACARANDA",
+    "nv": 2
+  },
+  {
+    "t": "JEQUITIBÁ",
+    "n": "JEQUITIBA",
+    "nv": 3
+  },
+  {
+    "t": "QUARESMEIRA",
+    "n": "QUARESMEIRA",
+    "nv": 3
+  },
+  {
+    "t": "CEDRO",
+    "n": "CEDRO",
+    "nv": 2
+  },
+  {
+    "t": "PINHEIRO",
+    "n": "PINHEIRO",
+    "nv": 2
+  },
+  {
+    "t": "CIPRESTE",
+    "n": "CIPRESTE",
+    "nv": 2
+  },
+  {
+    "t": "EUCALIPTO",
+    "n": "EUCALIPTO",
+    "nv": 2
+  },
+  {
+    "t": "ARAPIRACA",
+    "n": "ARAPIRACA",
+    "nv": 3
+  },
+  {
+    "t": "SUCULENTA",
+    "n": "SUCULENTA",
+    "nv": 2
+  },
+  {
+    "t": "CACTO",
+    "n": "CACTO",
+    "nv": 2
+  },
+  {
+    "t": "HERA",
+    "n": "HERA",
+    "nv": 2
+  },
+  {
+    "t": "PARREIRA",
+    "n": "PARREIRA",
+    "nv": 2
+  },
+  {
+    "t": "VIDEIRA",
+    "n": "VIDEIRA",
+    "nv": 2
+  },
+  {
+    "t": "POMAR",
+    "n": "POMAR",
+    "nv": 2
+  },
+  {
+    "t": "HERBÁRIO",
+    "n": "HERBARIO",
+    "nv": 3
+  },
+  {
+    "t": "CLOROFILA",
+    "n": "CLOROFILA",
+    "nv": 3
+  },
+  {
+    "t": "BOTÂNICA",
+    "n": "BOTANICA",
+    "nv": 3
+  },
+  {
+    "t": "MANACÁ",
+    "n": "MANACA",
+    "nv": 3
+  },
+  {
+    "t": "PETÚNIA",
+    "n": "PETUNIA",
+    "nv": 2
+  }
+]

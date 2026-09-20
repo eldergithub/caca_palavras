@@ -1,0 +1,227 @@
+[
+  {
+    "t": "CACHORRO",
+    "n": "CACHORRO",
+    "nv": 1
+  },
+  {
+    "t": "GATO",
+    "n": "GATO",
+    "nv": 1
+  },
+  {
+    "t": "CAVALO",
+    "n": "CAVALO",
+    "nv": 1
+  },
+  {
+    "t": "PÁSSARO",
+    "n": "PASSARO",
+    "nv": 1
+  },
+  {
+    "t": "CORUJA",
+    "n": "CORUJA",
+    "nv": 1
+  },
+  {
+    "t": "GAVIÃO",
+    "n": "GAVIAO",
+    "nv": 2
+  },
+  {
+    "t": "ÁGUIA",
+    "n": "AGUIA",
+    "nv": 2
+  },
+  {
+    "t": "CANÁRIO",
+    "n": "CANARIO",
+    "nv": 1
+  },
+  {
+    "t": "SABIÁ",
+    "n": "SABIA",
+    "nv": 1
+  },
+  {
+    "t": "ANDORINHA",
+    "n": "ANDORINHA",
+    "nv": 1
+  },
+  {
+    "t": "PAPAGAIO",
+    "n": "PAPAGAIO",
+    "nv": 1
+  },
+  {
+    "t": "TUCANO",
+    "n": "TUCANO",
+    "nv": 1
+  },
+  {
+    "t": "ARARA",
+    "n": "ARARA",
+    "nv": 1
+  },
+  {
+    "t": "GARÇA",
+    "n": "GARCA",
+    "nv": 2
+  },
+  {
+    "t": "CISNE",
+    "n": "CISNE",
+    "nv": 2
+  },
+  {
+    "t": "PELICANO",
+    "n": "PELICANO",
+    "nv": 2
+  },
+  {
+    "t": "PINGUIM",
+    "n": "PINGUIM",
+    "nv": 1
+  },
+  {
+    "t": "GOLFINHO",
+    "n": "GOLFINHO",
+    "nv": 1
+  },
+  {
+    "t": "BALEIA",
+    "n": "BALEIA",
+    "nv": 1
+  },
+  {
+    "t": "FOCA",
+    "n": "FOCA",
+    "nv": 1
+  },
+  {
+    "t": "TARTARUGA",
+    "n": "TARTARUGA",
+    "nv": 1
+  },
+  {
+    "t": "COELHO",
+    "n": "COELHO",
+    "nv": 1
+  },
+  {
+    "t": "ESQUILO",
+    "n": "ESQUILO",
+    "nv": 2
+  },
+  {
+    "t": "RAPOSA",
+    "n": "RAPOSA",
+    "nv": 1
+  },
+  {
+    "t": "CERVO",
+    "n": "CERVO",
+    "nv": 2
+  },
+  {
+    "t": "VEADO",
+    "n": "VEADO",
+    "nv": 2
+  },
+  {
+    "t": "LEÃO",
+    "n": "LEAO",
+    "nv": 1
+  },
+  {
+    "t": "ONÇA",
+    "n": "ONCA",
+    "nv": 1
+  },
+  {
+    "t": "TIGRE",
+    "n": "TIGRE",
+    "nv": 1
+  },
+  {
+    "t": "LEOPARDO",
+    "n": "LEOPARDO",
+    "nv": 2
+  },
+  {
+    "t": "GIRAFA",
+    "n": "GIRAFA",
+    "nv": 1
+  },
+  {
+    "t": "ELEFANTE",
+    "n": "ELEFANTE",
+    "nv": 1
+  },
+  {
+    "t": "ZEBRA",
+    "n": "ZEBRA",
+    "nv": 1
+  },
+  {
+    "t": "CAMELO",
+    "n": "CAMELO",
+    "nv": 1
+  },
+  {
+    "t": "OVELHA",
+    "n": "OVELHA",
+    "nv": 1
+  },
+  {
+    "t": "CABRA",
+    "n": "CABRA",
+    "nv": 1
+  },
+  {
+    "t": "CORDEIRO",
+    "n": "CORDEIRO",
+    "nv": 2
+  },
+  {
+    "t": "LONTRA",
+    "n": "LONTRA",
+    "nv": 2
+  },
+  {
+    "t": "BORBOLETA",
+    "n": "BORBOLETA",
+    "nv": 1
+  },
+  {
+    "t": "ABELHA",
+    "n": "ABELHA",
+    "nv": 1
+  },
+  {
+    "t": "JOANINHA",
+    "n": "JOANINHA",
+    "nv": 1
+  },
+  {
+    "t": "LIBÉLULA",
+    "n": "LIBELULA",
+    "nv": 2
+  },
+  {
+    "t": "COLIBRI",
+    "n": "COLIBRI",
+    "nv": 2
+  },
+  {
+    "t": "GAIVOTA",
+    "n": "GAIVOTA",
+    "nv": 2
+  },
+  {
+    "t": "ROUXINOL",
+    "n": "ROUXINOL",
+    "nv": 3
+  }
+]

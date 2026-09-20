@@ -1,0 +1,222 @@
+[
+  {
+    "t": "ALMOÇO",
+    "n": "ALMOCO",
+    "nv": 1
+  },
+  {
+    "t": "JANTAR",
+    "n": "JANTAR",
+    "nv": 1
+  },
+  {
+    "t": "MANHÃ",
+    "n": "MANHA",
+    "nv": 1
+  },
+  {
+    "t": "TARDE",
+    "n": "TARDE",
+    "nv": 1
+  },
+  {
+    "t": "NOITE",
+    "n": "NOITE",
+    "nv": 1
+  },
+  {
+    "t": "ROTINA",
+    "n": "ROTINA",
+    "nv": 1
+  },
+  {
+    "t": "PASSEIO",
+    "n": "PASSEIO",
+    "nv": 1
+  },
+  {
+    "t": "DESCANSO",
+    "n": "DESCANSO",
+    "nv": 1
+  },
+  {
+    "t": "COMPRA",
+    "n": "COMPRA",
+    "nv": 1
+  },
+  {
+    "t": "CONVERSA",
+    "n": "CONVERSA",
+    "nv": 1
+  },
+  {
+    "t": "CAMINHADA",
+    "n": "CAMINHADA",
+    "nv": 1
+  },
+  {
+    "t": "LEITURA",
+    "n": "LEITURA",
+    "nv": 1
+  },
+  {
+    "t": "VISITA",
+    "n": "VISITA",
+    "nv": 1
+  },
+  {
+    "t": "BANHO",
+    "n": "BANHO",
+    "nv": 1
+  },
+  {
+    "t": "SONO",
+    "n": "SONO",
+    "nv": 1
+  },
+  {
+    "t": "SONHO",
+    "n": "SONHO",
+    "nv": 1
+  },
+  {
+    "t": "ACORDAR",
+    "n": "ACORDAR",
+    "nv": 1
+  },
+  {
+    "t": "DORMIR",
+    "n": "DORMIR",
+    "nv": 1
+  },
+  {
+    "t": "LIMPEZA",
+    "n": "LIMPEZA",
+    "nv": 1
+  },
+  {
+    "t": "ARRUMAÇÃO",
+    "n": "ARRUMACAO",
+    "nv": 1
+  },
+  {
+    "t": "ENCONTRO",
+    "n": "ENCONTRO",
+    "nv": 1
+  },
+  {
+    "t": "RECADO",
+    "n": "RECADO",
+    "nv": 1
+  },
+  {
+    "t": "BILHETE",
+    "n": "BILHETE",
+    "nv": 1
+  },
+  {
+    "t": "JORNAL",
+    "n": "JORNAL",
+    "nv": 1
+  },
+  {
+    "t": "REVISTA",
+    "n": "REVISTA",
+    "nv": 1
+  },
+  {
+    "t": "CARTA",
+    "n": "CARTA",
+    "nv": 1
+  },
+  {
+    "t": "PACOTE",
+    "n": "PACOTE",
+    "nv": 1
+  },
+  {
+    "t": "SACOLA",
+    "n": "SACOLA",
+    "nv": 1
+  },
+  {
+    "t": "CHAVE",
+    "n": "CHAVE",
+    "nv": 1
+  },
+  {
+    "t": "PORTÃO",
+    "n": "PORTAO",
+    "nv": 1
+  },
+  {
+    "t": "PORTA",
+    "n": "PORTA",
+    "nv": 1
+  },
+  {
+    "t": "JANELA",
+    "n": "JANELA",
+    "nv": 1
+  },
+  {
+    "t": "QUINTAL",
+    "n": "QUINTAL",
+    "nv": 1
+  },
+  {
+    "t": "CALÇADA",
+    "n": "CALCADA",
+    "nv": 1
+  },
+  {
+    "t": "VIZINHO",
+    "n": "VIZINHO",
+    "nv": 1
+  },
+  {
+    "t": "HORÁRIO",
+    "n": "HORARIO",
+    "nv": 1
+  },
+  {
+    "t": "RELÓGIO",
+    "n": "RELOGIO",
+    "nv": 1
+  },
+  {
+    "t": "AGENDA",
+    "n": "AGENDA",
+    "nv": 1
+  },
+  {
+    "t": "TAREFA",
+    "n": "TAREFA",
+    "nv": 1
+  },
+  {
+    "t": "PASSO",
+    "n": "PASSO",
+    "nv": 1
+  },
+  {
+    "t": "REFEIÇÃO",
+    "n": "REFEICAO",
+    "nv": 1
+  },
+  {
+    "t": "DESPENSA",
+    "n": "DESPENSA",
+    "nv": 2
+  },
+  {
+    "t": "ALPENDRE",
+    "n": "ALPENDRE",
+    "nv": 2
+  },
+  {
+    "t": "DESPERTAR",
+    "n": "DESPERTAR",
+    "nv": 2
+  }
+]

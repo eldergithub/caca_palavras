@@ -1,0 +1,227 @@
+[
+  {
+    "t": "CADEIRA",
+    "n": "CADEIRA",
+    "nv": 1
+  },
+  {
+    "t": "MESA",
+    "n": "MESA",
+    "nv": 1
+  },
+  {
+    "t": "SOFÁ",
+    "n": "SOFA",
+    "nv": 1
+  },
+  {
+    "t": "ARMÁRIO",
+    "n": "ARMARIO",
+    "nv": 1
+  },
+  {
+    "t": "GAVETA",
+    "n": "GAVETA",
+    "nv": 1
+  },
+  {
+    "t": "ESTANTE",
+    "n": "ESTANTE",
+    "nv": 1
+  },
+  {
+    "t": "ESPELHO",
+    "n": "ESPELHO",
+    "nv": 1
+  },
+  {
+    "t": "QUADRO",
+    "n": "QUADRO",
+    "nv": 1
+  },
+  {
+    "t": "TAPETE",
+    "n": "TAPETE",
+    "nv": 1
+  },
+  {
+    "t": "CORTINA",
+    "n": "CORTINA",
+    "nv": 2
+  },
+  {
+    "t": "ABAJUR",
+    "n": "ABAJUR",
+    "nv": 2
+  },
+  {
+    "t": "LÂMPADA",
+    "n": "LAMPADA",
+    "nv": 2
+  },
+  {
+    "t": "PRATO",
+    "n": "PRATO",
+    "nv": 1
+  },
+  {
+    "t": "PRATA",
+    "n": "PRATA",
+    "nv": 2
+  },
+  {
+    "t": "XÍCARA",
+    "n": "XICARA",
+    "nv": 1
+  },
+  {
+    "t": "COPO",
+    "n": "COPO",
+    "nv": 1
+  },
+  {
+    "t": "TALHER",
+    "n": "TALHER",
+    "nv": 2
+  },
+  {
+    "t": "GARFO",
+    "n": "GARFO",
+    "nv": 1
+  },
+  {
+    "t": "COLHER",
+    "n": "COLHER",
+    "nv": 1
+  },
+  {
+    "t": "FACA",
+    "n": "FACA",
+    "nv": 1
+  },
+  {
+    "t": "PANELA",
+    "n": "PANELA",
+    "nv": 1
+  },
+  {
+    "t": "FRIGIDEIRA",
+    "n": "FRIGIDEIRA",
+    "nv": 2
+  },
+  {
+    "t": "CHALEIRA",
+    "n": "CHALEIRA",
+    "nv": 2
+  },
+  {
+    "t": "GARRAFA",
+    "n": "GARRAFA",
+    "nv": 1
+  },
+  {
+    "t": "VASILHA",
+    "n": "VASILHA",
+    "nv": 2
+  },
+  {
+    "t": "TRAVESSEIRO",
+    "n": "TRAVESSEIRO",
+    "nv": 2
+  },
+  {
+    "t": "COBERTOR",
+    "n": "COBERTOR",
+    "nv": 2
+  },
+  {
+    "t": "LENÇOL",
+    "n": "LENCOL",
+    "nv": 2
+  },
+  {
+    "t": "TOALHA",
+    "n": "TOALHA",
+    "nv": 1
+  },
+  {
+    "t": "TESOURA",
+    "n": "TESOURA",
+    "nv": 1
+  },
+  {
+    "t": "AGULHA",
+    "n": "AGULHA",
+    "nv": 1
+  },
+  {
+    "t": "LINHA",
+    "n": "LINHA",
+    "nv": 1
+  },
+  {
+    "t": "BOTÃO",
+    "n": "BOTAO",
+    "nv": 1
+  },
+  {
+    "t": "CANETA",
+    "n": "CANETA",
+    "nv": 1
+  },
+  {
+    "t": "LÁPIS",
+    "n": "LAPIS",
+    "nv": 1
+  },
+  {
+    "t": "BORRACHA",
+    "n": "BORRACHA",
+    "nv": 1
+  },
+  {
+    "t": "CADERNO",
+    "n": "CADERNO",
+    "nv": 1
+  },
+  {
+    "t": "ENVELOPE",
+    "n": "ENVELOPE",
+    "nv": 2
+  },
+  {
+    "t": "VASO",
+    "n": "VASO",
+    "nv": 1
+  },
+  {
+    "t": "CANDELABRO",
+    "n": "CANDELABRO",
+    "nv": 3
+  },
+  {
+    "t": "RELICÁRIO",
+    "n": "RELICARIO",
+    "nv": 3
+  },
+  {
+    "t": "ALFARRÁBIO",
+    "n": "ALFARRABIO",
+    "nv": 3
+  },
+  {
+    "t": "LEQUE",
+    "n": "LEQUE",
+    "nv": 2
+  },
+  {
+    "t": "BANQUETA",
+    "n": "BANQUETA",
+    "nv": 2
+  },
+  {
+    "t": "RETRATO",
+    "n": "RETRATO",
+    "nv": 2
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "t": "METÁFORA",
+    "n": "METAFORA",
+    "nv": 3
+  },
+  {
+    "t": "METONÍMIA",
+    "n": "METONIMIA",
+    "nv": 3
+  },
+  {
+    "t": "ANTÍTESE",
+    "n": "ANTITESE",
+    "nv": 3
+  },
+  {
+    "t": "PARADOXO",
+    "n": "PARADOXO",
+    "nv": 3
+  },
+  {
+    "t": "HIPÉRBOLE",
+    "n": "HIPERBOLE",
+    "nv": 3
+  },
+  {
+    "t": "EUFEMISMO",
+    "n": "EUFEMISMO",
+    "nv": 3
+  },
+  {
+    "t": "IRONIA",
+    "n": "IRONIA",
+    "nv": 2
+  },
+  {
+    "t": "PLEONASMO",
+    "n": "PLEONASMO",
+    "nv": 3
+  },
+  {
+    "t": "ALITERAÇÃO",
+    "n": "ALITERACAO",
+    "nv": 3
+  },
+  {
+    "t": "ASSONÂNCIA",
+    "n": "ASSONANCIA",
+    "nv": 3
+  },
+  {
+    "t": "SINESTESIA",
+    "n": "SINESTESIA",
+    "nv": 3
+  },
+  {
+    "t": "PROSOPOPEIA",
+    "n": "PROSOPOPEIA",
+    "nv": 3
+  },
+  {
+    "t": "SUJEITO",
+    "n": "SUJEITO",
+    "nv": 2
+  },
+  {
+    "t": "PREDICADO",
+    "n": "PREDICADO",
+    "nv": 2
+  },
+  {
+    "t": "SUBSTANTIVO",
+    "n": "SUBSTANTIVO",
+    "nv": 2
+  },
+  {
+    "t": "ADJETIVO",
+    "n": "ADJETIVO",
+    "nv": 2
+  },
+  {
+    "t": "PRONOME",
+    "n": "PRONOME",
+    "nv": 2
+  },
+  {
+    "t": "VERBO",
+    "n": "VERBO",
+    "nv": 2
+  },
+  {
+    "t": "ADVÉRBIO",
+    "n": "ADVERBIO",
+    "nv": 2
+  },
+  {
+    "t": "PREPOSIÇÃO",
+    "n": "PREPOSICAO",
+    "nv": 2
+  },
+  {
+    "t": "CONJUNÇÃO",
+    "n": "CONJUNCAO",
+    "nv": 2
+  },
+  {
+    "t": "INTERJEIÇÃO",
+    "n": "INTERJEICAO",
+    "nv": 3
+  },
+  {
+    "t": "ARTIGO",
+    "n": "ARTIGO",
+    "nv": 2
+  },
+  {
+    "t": "NUMERAL",
+    "n": "NUMERAL",
+    "nv": 2
+  },
+  {
+    "t": "ORAÇÃO",
+    "n": "ORACAO",
+    "nv": 2
+  },
+  {
+    "t": "PERÍODO",
+    "n": "PERIODO",
+    "nv": 2
+  },
+  {
+    "t": "PARÁGRAFO",
+    "n": "PARAGRAFO",
+    "nv": 2
+  },
+  {
+    "t": "SINTAXE",
+    "n": "SINTAXE",
+    "nv": 3
+  },
+  {
+    "t": "SEMÂNTICA",
+    "n": "SEMANTICA",
+    "nv": 3
+  },
+  {
+    "t": "FONÉTICA",
+    "n": "FONETICA",
+    "nv": 3
+  },
+  {
+    "t": "MORFOLOGIA",
+    "n": "MORFOLOGIA",
+    "nv": 3
+  },
+  {
+    "t": "ACENTUAÇÃO",
+    "n": "ACENTUACAO",
+    "nv": 2
+  },
+  {
+    "t": "PONTUAÇÃO",
+    "n": "PONTUACAO",
+    "nv": 2
+  },
+  {
+    "t": "VÍRGULA",
+    "n": "VIRGULA",
+    "nv": 1
+  },
+  {
+    "t": "TRAVESSÃO",
+    "n": "TRAVESSAO",
+    "nv": 2
+  },
+  {
+    "t": "PARÊNTESE",
+    "n": "PARENTESE",
+    "nv": 2
+  },
+  {
+    "t": "RETICÊNCIAS",
+    "n": "RETICENCIAS",
+    "nv": 3
+  },
+  {
+    "t": "RADICAL",
+    "n": "RADICAL",
+    "nv": 2
+  },
+  {
+    "t": "PREFIXO",
+    "n": "PREFIXO",
+    "nv": 2
+  },
+  {
+    "t": "SUFIXO",
+    "n": "SUFIXO",
+    "nv": 2
+  },
+  {
+    "t": "VOCÁBULO",
+    "n": "VOCABULO",
+    "nv": 3
+  },
+  {
+    "t": "REGÊNCIA",
+    "n": "REGENCIA",
+    "nv": 3
+  },
+  {
+    "t": "CRASE",
+    "n": "CRASE",
+    "nv": 2
+  },
+  {
+    "t": "TÔNICA",
+    "n": "TONICA",
+    "nv": 2
+  },
+  {
+    "t": "ÁTONA",
+    "n": "ATONA",
+    "nv": 2
+  }
+]

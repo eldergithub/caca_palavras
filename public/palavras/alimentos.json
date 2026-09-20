@@ -1,0 +1,227 @@
+[
+  {
+    "t": "ARROZ",
+    "n": "ARROZ",
+    "nv": 1
+  },
+  {
+    "t": "FEIJÃO",
+    "n": "FEIJAO",
+    "nv": 1
+  },
+  {
+    "t": "BATATA",
+    "n": "BATATA",
+    "nv": 1
+  },
+  {
+    "t": "CENOURA",
+    "n": "CENOURA",
+    "nv": 1
+  },
+  {
+    "t": "TOMATE",
+    "n": "TOMATE",
+    "nv": 1
+  },
+  {
+    "t": "CEBOLA",
+    "n": "CEBOLA",
+    "nv": 1
+  },
+  {
+    "t": "ALHO",
+    "n": "ALHO",
+    "nv": 1
+  },
+  {
+    "t": "ALFACE",
+    "n": "ALFACE",
+    "nv": 1
+  },
+  {
+    "t": "ESPINAFRE",
+    "n": "ESPINAFRE",
+    "nv": 2
+  },
+  {
+    "t": "ABÓBORA",
+    "n": "ABOBORA",
+    "nv": 1
+  },
+  {
+    "t": "CHUCHU",
+    "n": "CHUCHU",
+    "nv": 1
+  },
+  {
+    "t": "MANDIOCA",
+    "n": "MANDIOCA",
+    "nv": 1
+  },
+  {
+    "t": "BANANA",
+    "n": "BANANA",
+    "nv": 1
+  },
+  {
+    "t": "LARANJA",
+    "n": "LARANJA",
+    "nv": 1
+  },
+  {
+    "t": "MAÇÃ",
+    "n": "MACA",
+    "nv": 1
+  },
+  {
+    "t": "ABACAXI",
+    "n": "ABACAXI",
+    "nv": 1
+  },
+  {
+    "t": "MELANCIA",
+    "n": "MELANCIA",
+    "nv": 1
+  },
+  {
+    "t": "MELÃO",
+    "n": "MELAO",
+    "nv": 1
+  },
+  {
+    "t": "MORANGO",
+    "n": "MORANGO",
+    "nv": 1
+  },
+  {
+    "t": "GOIABA",
+    "n": "GOIABA",
+    "nv": 1
+  },
+  {
+    "t": "MANGA",
+    "n": "MANGA",
+    "nv": 1
+  },
+  {
+    "t": "PÊSSEGO",
+    "n": "PESSEGO",
+    "nv": 1
+  },
+  {
+    "t": "AMEIXA",
+    "n": "AMEIXA",
+    "nv": 2
+  },
+  {
+    "t": "JABUTICABA",
+    "n": "JABUTICABA",
+    "nv": 2
+  },
+  {
+    "t": "QUEIJO",
+    "n": "QUEIJO",
+    "nv": 1
+  },
+  {
+    "t": "MANTEIGA",
+    "n": "MANTEIGA",
+    "nv": 1
+  },
+  {
+    "t": "TORRADA",
+    "n": "TORRADA",
+    "nv": 1
+  },
+  {
+    "t": "BISCOITO",
+    "n": "BISCOITO",
+    "nv": 1
+  },
+  {
+    "t": "BOLO",
+    "n": "BOLO",
+    "nv": 1
+  },
+  {
+    "t": "TORTA",
+    "n": "TORTA",
+    "nv": 1
+  },
+  {
+    "t": "SOPA",
+    "n": "SOPA",
+    "nv": 1
+  },
+  {
+    "t": "CALDO",
+    "n": "CALDO",
+    "nv": 1
+  },
+  {
+    "t": "POLENTA",
+    "n": "POLENTA",
+    "nv": 1
+  },
+  {
+    "t": "CANJICA",
+    "n": "CANJICA",
+    "nv": 1
+  },
+  {
+    "t": "PAMONHA",
+    "n": "PAMONHA",
+    "nv": 1
+  },
+  {
+    "t": "AZEITE",
+    "n": "AZEITE",
+    "nv": 2
+  },
+  {
+    "t": "VINAGRE",
+    "n": "VINAGRE",
+    "nv": 2
+  },
+  {
+    "t": "TEMPERO",
+    "n": "TEMPERO",
+    "nv": 1
+  },
+  {
+    "t": "CANELA",
+    "n": "CANELA",
+    "nv": 1
+  },
+  {
+    "t": "CRAVO",
+    "n": "CRAVO",
+    "nv": 1
+  },
+  {
+    "t": "ALECRIM",
+    "n": "ALECRIM",
+    "nv": 2
+  },
+  {
+    "t": "HORTELÃ",
+    "n": "HORTELA",
+    "nv": 1
+  },
+  {
+    "t": "FARINHA",
+    "n": "FARINHA",
+    "nv": 1
+  },
+  {
+    "t": "EMPADA",
+    "n": "EMPADA",
+    "nv": 1
+  },
+  {
+    "t": "PASTEL",
+    "n": "PASTEL",
+    "nv": 1
+  }
+]

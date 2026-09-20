@@ -1,0 +1,227 @@
+[
+  {
+    "t": "TRADIÇÃO",
+    "n": "TRADICAO",
+    "nv": 2
+  },
+  {
+    "t": "FOLCLORE",
+    "n": "FOLCLORE",
+    "nv": 2
+  },
+  {
+    "t": "LENDA",
+    "n": "LENDA",
+    "nv": 2
+  },
+  {
+    "t": "MITO",
+    "n": "MITO",
+    "nv": 2
+  },
+  {
+    "t": "FESTIVAL",
+    "n": "FESTIVAL",
+    "nv": 2
+  },
+  {
+    "t": "CARNAVAL",
+    "n": "CARNAVAL",
+    "nv": 1
+  },
+  {
+    "t": "CORTEJO",
+    "n": "CORTEJO",
+    "nv": 3
+  },
+  {
+    "t": "DESFILE",
+    "n": "DESFILE",
+    "nv": 2
+  },
+  {
+    "t": "PROCISSÃO",
+    "n": "PROCISSAO",
+    "nv": 2
+  },
+  {
+    "t": "CONGADA",
+    "n": "CONGADA",
+    "nv": 3
+  },
+  {
+    "t": "MARACATU",
+    "n": "MARACATU",
+    "nv": 3
+  },
+  {
+    "t": "FREVO",
+    "n": "FREVO",
+    "nv": 2
+  },
+  {
+    "t": "CIRANDA",
+    "n": "CIRANDA",
+    "nv": 2
+  },
+  {
+    "t": "SAMBA",
+    "n": "SAMBA",
+    "nv": 1
+  },
+  {
+    "t": "CHORINHO",
+    "n": "CHORINHO",
+    "nv": 2
+  },
+  {
+    "t": "SERESTA",
+    "n": "SERESTA",
+    "nv": 3
+  },
+  {
+    "t": "REPENTE",
+    "n": "REPENTE",
+    "nv": 3
+  },
+  {
+    "t": "CORDEL",
+    "n": "CORDEL",
+    "nv": 2
+  },
+  {
+    "t": "ARTESANATO",
+    "n": "ARTESANATO",
+    "nv": 2
+  },
+  {
+    "t": "CERÂMICA",
+    "n": "CERAMICA",
+    "nv": 2
+  },
+  {
+    "t": "RENDADO",
+    "n": "RENDADO",
+    "nv": 2
+  },
+  {
+    "t": "BORDADO",
+    "n": "BORDADO",
+    "nv": 2
+  },
+  {
+    "t": "TAPEÇARIA",
+    "n": "TAPECARIA",
+    "nv": 2
+  },
+  {
+    "t": "CULINÁRIA",
+    "n": "CULINARIA",
+    "nv": 2
+  },
+  {
+    "t": "PATRIMÔNIO",
+    "n": "PATRIMONIO",
+    "nv": 2
+  },
+  {
+    "t": "ACERVO",
+    "n": "ACERVO",
+    "nv": 3
+  },
+  {
+    "t": "GALERIA",
+    "n": "GALERIA",
+    "nv": 2
+  },
+  {
+    "t": "EXPOSIÇÃO",
+    "n": "EXPOSICAO",
+    "nv": 2
+  },
+  {
+    "t": "ESCULTURA",
+    "n": "ESCULTURA",
+    "nv": 2
+  },
+  {
+    "t": "MONUMENTO",
+    "n": "MONUMENTO",
+    "nv": 2
+  },
+  {
+    "t": "MUSEOLOGIA",
+    "n": "MUSEOLOGIA",
+    "nv": 3
+  },
+  {
+    "t": "MEMÓRIA",
+    "n": "MEMORIA",
+    "nv": 2
+  },
+  {
+    "t": "COSTUME",
+    "n": "COSTUME",
+    "nv": 2
+  },
+  {
+    "t": "CRENÇA",
+    "n": "CRENCA",
+    "nv": 2
+  },
+  {
+    "t": "RITUAL",
+    "n": "RITUAL",
+    "nv": 2
+  },
+  {
+    "t": "FESTEJO",
+    "n": "FESTEJO",
+    "nv": 2
+  },
+  {
+    "t": "SABEDORIA",
+    "n": "SABEDORIA",
+    "nv": 2
+  },
+  {
+    "t": "POPULAR",
+    "n": "POPULAR",
+    "nv": 1
+  },
+  {
+    "t": "ERUDITO",
+    "n": "ERUDITO",
+    "nv": 3
+  },
+  {
+    "t": "HISTÓRIA",
+    "n": "HISTORIA",
+    "nv": 1
+  },
+  {
+    "t": "MEMORIAL",
+    "n": "MEMORIAL",
+    "nv": 2
+  },
+  {
+    "t": "HOMENAGEM",
+    "n": "HOMENAGEM",
+    "nv": 2
+  },
+  {
+    "t": "CELEBRAÇÃO",
+    "n": "CELEBRACAO",
+    "nv": 2
+  },
+  {
+    "t": "BALUARTE",
+    "n": "BALUARTE",
+    "nv": 3
+  },
+  {
+    "t": "RELÍQUIA",
+    "n": "RELIQUIA",
+    "nv": 3
+  }
+]

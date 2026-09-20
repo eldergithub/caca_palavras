@@ -1,0 +1,232 @@
+[
+  {
+    "t": "CABEÇA",
+    "n": "CABECA",
+    "nv": 1
+  },
+  {
+    "t": "CABELO",
+    "n": "CABELO",
+    "nv": 1
+  },
+  {
+    "t": "ROSTO",
+    "n": "ROSTO",
+    "nv": 1
+  },
+  {
+    "t": "TESTA",
+    "n": "TESTA",
+    "nv": 1
+  },
+  {
+    "t": "OLHO",
+    "n": "OLHO",
+    "nv": 1
+  },
+  {
+    "t": "SOBRANCELHA",
+    "n": "SOBRANCELHA",
+    "nv": 2
+  },
+  {
+    "t": "CÍLIO",
+    "n": "CILIO",
+    "nv": 2
+  },
+  {
+    "t": "NARIZ",
+    "n": "NARIZ",
+    "nv": 1
+  },
+  {
+    "t": "BOCA",
+    "n": "BOCA",
+    "nv": 1
+  },
+  {
+    "t": "LÁBIO",
+    "n": "LABIO",
+    "nv": 1
+  },
+  {
+    "t": "DENTE",
+    "n": "DENTE",
+    "nv": 1
+  },
+  {
+    "t": "LÍNGUA",
+    "n": "LINGUA",
+    "nv": 1
+  },
+  {
+    "t": "QUEIXO",
+    "n": "QUEIXO",
+    "nv": 1
+  },
+  {
+    "t": "ORELHA",
+    "n": "ORELHA",
+    "nv": 1
+  },
+  {
+    "t": "OUVIDO",
+    "n": "OUVIDO",
+    "nv": 1
+  },
+  {
+    "t": "PESCOÇO",
+    "n": "PESCOCO",
+    "nv": 1
+  },
+  {
+    "t": "GARGANTA",
+    "n": "GARGANTA",
+    "nv": 1
+  },
+  {
+    "t": "OMBRO",
+    "n": "OMBRO",
+    "nv": 1
+  },
+  {
+    "t": "PEITO",
+    "n": "PEITO",
+    "nv": 1
+  },
+  {
+    "t": "CORAÇÃO",
+    "n": "CORACAO",
+    "nv": 1
+  },
+  {
+    "t": "CORPO",
+    "n": "CORPO",
+    "nv": 1
+  },
+  {
+    "t": "COSTAS",
+    "n": "COSTAS",
+    "nv": 1
+  },
+  {
+    "t": "COLUNA",
+    "n": "COLUNA",
+    "nv": 2
+  },
+  {
+    "t": "BRAÇO",
+    "n": "BRACO",
+    "nv": 1
+  },
+  {
+    "t": "COTOVELO",
+    "n": "COTOVELO",
+    "nv": 2
+  },
+  {
+    "t": "PULSO",
+    "n": "PULSO",
+    "nv": 2
+  },
+  {
+    "t": "DEDO",
+    "n": "DEDO",
+    "nv": 1
+  },
+  {
+    "t": "UNHA",
+    "n": "UNHA",
+    "nv": 1
+  },
+  {
+    "t": "PALMA",
+    "n": "PALMA",
+    "nv": 1
+  },
+  {
+    "t": "CINTURA",
+    "n": "CINTURA",
+    "nv": 1
+  },
+  {
+    "t": "QUADRIL",
+    "n": "QUADRIL",
+    "nv": 2
+  },
+  {
+    "t": "PERNA",
+    "n": "PERNA",
+    "nv": 1
+  },
+  {
+    "t": "COXA",
+    "n": "COXA",
+    "nv": 1
+  },
+  {
+    "t": "JOELHO",
+    "n": "JOELHO",
+    "nv": 1
+  },
+  {
+    "t": "TORNOZELO",
+    "n": "TORNOZELO",
+    "nv": 2
+  },
+  {
+    "t": "COSTELA",
+    "n": "COSTELA",
+    "nv": 2
+  },
+  {
+    "t": "CALCANHAR",
+    "n": "CALCANHAR",
+    "nv": 2
+  },
+  {
+    "t": "PELE",
+    "n": "PELE",
+    "nv": 1
+  },
+  {
+    "t": "SANGUE",
+    "n": "SANGUE",
+    "nv": 1
+  },
+  {
+    "t": "PULMÃO",
+    "n": "PULMAO",
+    "nv": 2
+  },
+  {
+    "t": "CÉREBRO",
+    "n": "CEREBRO",
+    "nv": 2
+  },
+  {
+    "t": "NERVO",
+    "n": "NERVO",
+    "nv": 2
+  },
+  {
+    "t": "MÚSCULO",
+    "n": "MUSCULO",
+    "nv": 2
+  },
+  {
+    "t": "OSSO",
+    "n": "OSSO",
+    "nv": 1
+  },
+  {
+    "t": "ARTÉRIA",
+    "n": "ARTERIA",
+    "nv": 2
+  },
+  {
+    "t": "PUPILA",
+    "n": "PUPILA",
+    "nv": 2
+  }
+]

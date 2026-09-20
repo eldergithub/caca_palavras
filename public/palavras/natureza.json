@@ -1,0 +1,227 @@
+[
+  {
+    "t": "CHUVA",
+    "n": "CHUVA",
+    "nv": 1
+  },
+  {
+    "t": "VENTO",
+    "n": "VENTO",
+    "nv": 1
+  },
+  {
+    "t": "NUVEM",
+    "n": "NUVEM",
+    "nv": 1
+  },
+  {
+    "t": "TROVÃO",
+    "n": "TROVAO",
+    "nv": 1
+  },
+  {
+    "t": "RAIO",
+    "n": "RAIO",
+    "nv": 1
+  },
+  {
+    "t": "ORVALHO",
+    "n": "ORVALHO",
+    "nv": 2
+  },
+  {
+    "t": "NEBLINA",
+    "n": "NEBLINA",
+    "nv": 2
+  },
+  {
+    "t": "GAROA",
+    "n": "GAROA",
+    "nv": 1
+  },
+  {
+    "t": "BRISA",
+    "n": "BRISA",
+    "nv": 2
+  },
+  {
+    "t": "TEMPESTADE",
+    "n": "TEMPESTADE",
+    "nv": 2
+  },
+  {
+    "t": "AURORA",
+    "n": "AURORA",
+    "nv": 2
+  },
+  {
+    "t": "CREPÚSCULO",
+    "n": "CREPUSCULO",
+    "nv": 3
+  },
+  {
+    "t": "ALVORADA",
+    "n": "ALVORADA",
+    "nv": 2
+  },
+  {
+    "t": "POENTE",
+    "n": "POENTE",
+    "nv": 2
+  },
+  {
+    "t": "NASCENTE",
+    "n": "NASCENTE",
+    "nv": 2
+  },
+  {
+    "t": "SERENO",
+    "n": "SERENO",
+    "nv": 2
+  },
+  {
+    "t": "RIACHO",
+    "n": "RIACHO",
+    "nv": 1
+  },
+  {
+    "t": "CASCATA",
+    "n": "CASCATA",
+    "nv": 2
+  },
+  {
+    "t": "LAGO",
+    "n": "LAGO",
+    "nv": 1
+  },
+  {
+    "t": "LAGOA",
+    "n": "LAGOA",
+    "nv": 1
+  },
+  {
+    "t": "OCEANO",
+    "n": "OCEANO",
+    "nv": 2
+  },
+  {
+    "t": "MONTANHA",
+    "n": "MONTANHA",
+    "nv": 1
+  },
+  {
+    "t": "COLINA",
+    "n": "COLINA",
+    "nv": 2
+  },
+  {
+    "t": "VALE",
+    "n": "VALE",
+    "nv": 2
+  },
+  {
+    "t": "PLANÍCIE",
+    "n": "PLANICIE",
+    "nv": 2
+  },
+  {
+    "t": "CLAREIRA",
+    "n": "CLAREIRA",
+    "nv": 2
+  },
+  {
+    "t": "BOSQUE",
+    "n": "BOSQUE",
+    "nv": 2
+  },
+  {
+    "t": "FLORESTA",
+    "n": "FLORESTA",
+    "nv": 1
+  },
+  {
+    "t": "HORIZONTE",
+    "n": "HORIZONTE",
+    "nv": 2
+  },
+  {
+    "t": "ESTRELA",
+    "n": "ESTRELA",
+    "nv": 1
+  },
+  {
+    "t": "COMETA",
+    "n": "COMETA",
+    "nv": 2
+  },
+  {
+    "t": "PLANETA",
+    "n": "PLANETA",
+    "nv": 2
+  },
+  {
+    "t": "CAVERNA",
+    "n": "CAVERNA",
+    "nv": 1
+  },
+  {
+    "t": "GRUTA",
+    "n": "GRUTA",
+    "nv": 2
+  },
+  {
+    "t": "PENEDO",
+    "n": "PENEDO",
+    "nv": 3
+  },
+  {
+    "t": "MANANCIAL",
+    "n": "MANANCIAL",
+    "nv": 3
+  },
+  {
+    "t": "TORRENTE",
+    "n": "TORRENTE",
+    "nv": 3
+  },
+  {
+    "t": "VAPOR",
+    "n": "VAPOR",
+    "nv": 2
+  },
+  {
+    "t": "GEADA",
+    "n": "GEADA",
+    "nv": 2
+  },
+  {
+    "t": "GELO",
+    "n": "GELO",
+    "nv": 1
+  },
+  {
+    "t": "DESERTO",
+    "n": "DESERTO",
+    "nv": 2
+  },
+  {
+    "t": "OÁSIS",
+    "n": "OASIS",
+    "nv": 2
+  },
+  {
+    "t": "LUFADA",
+    "n": "LUFADA",
+    "nv": 3
+  },
+  {
+    "t": "VENDAVAL",
+    "n": "VENDAVAL",
+    "nv": 2
+  },
+  {
+    "t": "MARESIA",
+    "n": "MARESIA",
+    "nv": 2
+  }
+]

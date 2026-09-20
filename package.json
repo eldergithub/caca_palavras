@@ -1,0 +1,15 @@
+{
+  "name": "caca-palavras",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node tools/valida-banco.mjs && vite build && node tools/gen-sw.mjs",
+    "preview": "vite preview",
+    "test": "node tools/valida-banco.mjs && node tools/test-core.mjs"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "t": "PROFESSOR",
+    "n": "PROFESSOR",
+    "nv": 1
+  },
+  {
+    "t": "MESTRE",
+    "n": "MESTRE",
+    "nv": 2
+  },
+  {
+    "t": "DOUTOR",
+    "n": "DOUTOR",
+    "nv": 2
+  },
+  {
+    "t": "MÉDICO",
+    "n": "MEDICO",
+    "nv": 1
+  },
+  {
+    "t": "ENFERMEIRO",
+    "n": "ENFERMEIRO",
+    "nv": 2
+  },
+  {
+    "t": "DENTISTA",
+    "n": "DENTISTA",
+    "nv": 2
+  },
+  {
+    "t": "BIÓLOGO",
+    "n": "BIOLOGO",
+    "nv": 2
+  },
+  {
+    "t": "ADVOGADO",
+    "n": "ADVOGADO",
+    "nv": 2
+  },
+  {
+    "t": "JUIZ",
+    "n": "JUIZ",
+    "nv": 2
+  },
+  {
+    "t": "PROMOTOR",
+    "n": "PROMOTOR",
+    "nv": 2
+  },
+  {
+    "t": "ENGENHEIRO",
+    "n": "ENGENHEIRO",
+    "nv": 2
+  },
+  {
+    "t": "ARQUITETO",
+    "n": "ARQUITETO",
+    "nv": 2
+  },
+  {
+    "t": "ESCRITOR",
+    "n": "ESCRITOR",
+    "nv": 2
+  },
+  {
+    "t": "POETA",
+    "n": "POETA",
+    "nv": 2
+  },
+  {
+    "t": "JORNALISTA",
+    "n": "JORNALISTA",
+    "nv": 2
+  },
+  {
+    "t": "PINTOR",
+    "n": "PINTOR",
+    "nv": 1
+  },
+  {
+    "t": "ESCULTOR",
+    "n": "ESCULTOR",
+    "nv": 2
+  },
+  {
+    "t": "MÚSICO",
+    "n": "MUSICO",
+    "nv": 2
+  },
+  {
+    "t": "CANTOR",
+    "n": "CANTOR",
+    "nv": 1
+  },
+  {
+    "t": "ATRIZ",
+    "n": "ATRIZ",
+    "nv": 1
+  },
+  {
+    "t": "ATOR",
+    "n": "ATOR",
+    "nv": 1
+  },
+  {
+    "t": "DIRETOR",
+    "n": "DIRETOR",
+    "nv": 2
+  },
+  {
+    "t": "MAESTRO",
+    "n": "MAESTRO",
+    "nv": 3
+  },
+  {
+    "t": "CARPINTEIRO",
+    "n": "CARPINTEIRO",
+    "nv": 2
+  },
+  {
+    "t": "MARCENEIRO",
+    "n": "MARCENEIRO",
+    "nv": 2
+  },
+  {
+    "t": "PEDREIRO",
+    "n": "PEDREIRO",
+    "nv": 1
+  },
+  {
+    "t": "PADEIRO",
+    "n": "PADEIRO",
+    "nv": 1
+  },
+  {
+    "t": "CONFEITEIRO",
+    "n": "CONFEITEIRO",
+    "nv": 2
+  },
+  {
+    "t": "COZINHEIRO",
+    "n": "COZINHEIRO",
+    "nv": 1
+  },
+  {
+    "t": "ALFAIATE",
+    "n": "ALFAIATE",
+    "nv": 2
+  },
+  {
+    "t": "COSTUREIRA",
+    "n": "COSTUREIRA",
+    "nv": 1
+  },
+  {
+    "t": "SAPATEIRO",
+    "n": "SAPATEIRO",
+    "nv": 2
+  },
+  {
+    "t": "JARDINEIRO",
+    "n": "JARDINEIRO",
+    "nv": 1
+  },
+  {
+    "t": "AGRICULTOR",
+    "n": "AGRICULTOR",
+    "nv": 2
+  },
+  {
+    "t": "PESCADOR",
+    "n": "PESCADOR",
+    "nv": 1
+  },
+  {
+    "t": "PILOTO",
+    "n": "PILOTO",
+    "nv": 2
+  },
+  {
+    "t": "MARINHEIRO",
+    "n": "MARINHEIRO",
+    "nv": 2
+  },
+  {
+    "t": "CARTEIRO",
+    "n": "CARTEIRO",
+    "nv": 1
+  },
+  {
+    "t": "BOMBEIRO",
+    "n": "BOMBEIRO",
+    "nv": 1
+  },
+  {
+    "t": "POLICIAL",
+    "n": "POLICIAL",
+    "nv": 1
+  },
+  {
+    "t": "HISTORIADOR",
+    "n": "HISTORIADOR",
+    "nv": 3
+  },
+  {
+    "t": "FILÓSOFO",
+    "n": "FILOSOFO",
+    "nv": 3
+  },
+  {
+    "t": "CIENTISTA",
+    "n": "CIENTISTA",
+    "nv": 3
+  },
+  {
+    "t": "ARTESÃO",
+    "n": "ARTESAO",
+    "nv": 2
+  }
+]

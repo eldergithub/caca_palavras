@@ -1,0 +1,28 @@
+{
+  "name": "Caça-Palavras",
+  "short_name": "Caça-Palavras",
+  "description": "Jogo de caça-palavras com alto contraste e acessibilidade tátil.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#efe9dd",
+  "theme_color": "#efe9dd",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

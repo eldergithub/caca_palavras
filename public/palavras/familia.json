@@ -1,0 +1,222 @@
+[
+  {
+    "t": "FILHO",
+    "n": "FILHO",
+    "nv": 1
+  },
+  {
+    "t": "FILHA",
+    "n": "FILHA",
+    "nv": 1
+  },
+  {
+    "t": "IRMÃO",
+    "n": "IRMAO",
+    "nv": 1
+  },
+  {
+    "t": "IRMÃ",
+    "n": "IRMA",
+    "nv": 1
+  },
+  {
+    "t": "NETO",
+    "n": "NETO",
+    "nv": 1
+  },
+  {
+    "t": "NETA",
+    "n": "NETA",
+    "nv": 1
+  },
+  {
+    "t": "PRIMO",
+    "n": "PRIMO",
+    "nv": 1
+  },
+  {
+    "t": "PRIMA",
+    "n": "PRIMA",
+    "nv": 1
+  },
+  {
+    "t": "SOBRINHO",
+    "n": "SOBRINHO",
+    "nv": 1
+  },
+  {
+    "t": "SOBRINHA",
+    "n": "SOBRINHA",
+    "nv": 1
+  },
+  {
+    "t": "CASAL",
+    "n": "CASAL",
+    "nv": 1
+  },
+  {
+    "t": "ESPOSO",
+    "n": "ESPOSO",
+    "nv": 1
+  },
+  {
+    "t": "ESPOSA",
+    "n": "ESPOSA",
+    "nv": 1
+  },
+  {
+    "t": "NOIVO",
+    "n": "NOIVO",
+    "nv": 1
+  },
+  {
+    "t": "NOIVA",
+    "n": "NOIVA",
+    "nv": 1
+  },
+  {
+    "t": "SOGRO",
+    "n": "SOGRO",
+    "nv": 1
+  },
+  {
+    "t": "SOGRA",
+    "n": "SOGRA",
+    "nv": 1
+  },
+  {
+    "t": "GENRO",
+    "n": "GENRO",
+    "nv": 1
+  },
+  {
+    "t": "NORA",
+    "n": "NORA",
+    "nv": 1
+  },
+  {
+    "t": "CUNHADO",
+    "n": "CUNHADO",
+    "nv": 1
+  },
+  {
+    "t": "CUNHADA",
+    "n": "CUNHADA",
+    "nv": 1
+  },
+  {
+    "t": "MADRINHA",
+    "n": "MADRINHA",
+    "nv": 1
+  },
+  {
+    "t": "PADRINHO",
+    "n": "PADRINHO",
+    "nv": 1
+  },
+  {
+    "t": "AFILHADO",
+    "n": "AFILHADO",
+    "nv": 1
+  },
+  {
+    "t": "AFILHADA",
+    "n": "AFILHADA",
+    "nv": 1
+  },
+  {
+    "t": "BISAVÔ",
+    "n": "BISAVO",
+    "nv": 2
+  },
+  {
+    "t": "PADRASTO",
+    "n": "PADRASTO",
+    "nv": 2
+  },
+  {
+    "t": "MADRASTA",
+    "n": "MADRASTA",
+    "nv": 2
+  },
+  {
+    "t": "BISNETO",
+    "n": "BISNETO",
+    "nv": 2
+  },
+  {
+    "t": "BISNETA",
+    "n": "BISNETA",
+    "nv": 2
+  },
+  {
+    "t": "ANCESTRAL",
+    "n": "ANCESTRAL",
+    "nv": 2
+  },
+  {
+    "t": "GERAÇÃO",
+    "n": "GERACAO",
+    "nv": 2
+  },
+  {
+    "t": "HERANÇA",
+    "n": "HERANCA",
+    "nv": 2
+  },
+  {
+    "t": "PARENTESCO",
+    "n": "PARENTESCO",
+    "nv": 2
+  },
+  {
+    "t": "LINHAGEM",
+    "n": "LINHAGEM",
+    "nv": 3
+  },
+  {
+    "t": "MATRIARCA",
+    "n": "MATRIARCA",
+    "nv": 3
+  },
+  {
+    "t": "PATRIARCA",
+    "n": "PATRIARCA",
+    "nv": 3
+  },
+  {
+    "t": "MATRIMÔNIO",
+    "n": "MATRIMONIO",
+    "nv": 2
+  },
+  {
+    "t": "DINDINHA",
+    "n": "DINDINHA",
+    "nv": 1
+  },
+  {
+    "t": "ENTEADO",
+    "n": "ENTEADO",
+    "nv": 1
+  },
+  {
+    "t": "ENTEADA",
+    "n": "ENTEADA",
+    "nv": 1
+  },
+  {
+    "t": "BERÇO",
+    "n": "BERCO",
+    "nv": 1
+  },
+  {
+    "t": "NÚCLEO",
+    "n": "NUCLEO",
+    "nv": 2
+  },
+  {
+    "t": "UNIÃO",
+    "n": "UNIAO",
+    "nv": 1
+  }
+]

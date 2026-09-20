@@ -1,0 +1,237 @@
+[
+  {
+    "t": "MACHADO",
+    "n": "MACHADO",
+    "nv": 3
+  },
+  {
+    "t": "DRUMMOND",
+    "n": "DRUMMOND",
+    "nv": 3
+  },
+  {
+    "t": "CECÍLIA",
+    "n": "CECILIA",
+    "nv": 3
+  },
+  {
+    "t": "BANDEIRA",
+    "n": "BANDEIRA",
+    "nv": 3
+  },
+  {
+    "t": "BILAC",
+    "n": "BILAC",
+    "nv": 3
+  },
+  {
+    "t": "ALENCAR",
+    "n": "ALENCAR",
+    "nv": 3
+  },
+  {
+    "t": "GUIMARÃES",
+    "n": "GUIMARAES",
+    "nv": 3
+  },
+  {
+    "t": "CLARICE",
+    "n": "CLARICE",
+    "nv": 3
+  },
+  {
+    "t": "CASTRO",
+    "n": "CASTRO",
+    "nv": 3
+  },
+  {
+    "t": "CORALINA",
+    "n": "CORALINA",
+    "nv": 3
+  },
+  {
+    "t": "QUINTANA",
+    "n": "QUINTANA",
+    "nv": 3
+  },
+  {
+    "t": "PESSOA",
+    "n": "PESSOA",
+    "nv": 3
+  },
+  {
+    "t": "CAMÕES",
+    "n": "CAMOES",
+    "nv": 3
+  },
+  {
+    "t": "ROMANCE",
+    "n": "ROMANCE",
+    "nv": 2
+  },
+  {
+    "t": "CONTO",
+    "n": "CONTO",
+    "nv": 2
+  },
+  {
+    "t": "CANTO",
+    "n": "CANTO",
+    "nv": 2
+  },
+  {
+    "t": "NOVELA",
+    "n": "NOVELA",
+    "nv": 2
+  },
+  {
+    "t": "CRÔNICA",
+    "n": "CRONICA",
+    "nv": 2
+  },
+  {
+    "t": "POEMA",
+    "n": "POEMA",
+    "nv": 2
+  },
+  {
+    "t": "POESIA",
+    "n": "POESIA",
+    "nv": 2
+  },
+  {
+    "t": "SONETO",
+    "n": "SONETO",
+    "nv": 2
+  },
+  {
+    "t": "VERSO",
+    "n": "VERSO",
+    "nv": 2
+  },
+  {
+    "t": "ESTROFE",
+    "n": "ESTROFE",
+    "nv": 2
+  },
+  {
+    "t": "RIMA",
+    "n": "RIMA",
+    "nv": 1
+  },
+  {
+    "t": "ENREDO",
+    "n": "ENREDO",
+    "nv": 2
+  },
+  {
+    "t": "TRAMA",
+    "n": "TRAMA",
+    "nv": 2
+  },
+  {
+    "t": "CAPÍTULO",
+    "n": "CAPITULO",
+    "nv": 2
+  },
+  {
+    "t": "PÁGINA",
+    "n": "PAGINA",
+    "nv": 1
+  },
+  {
+    "t": "PRÓLOGO",
+    "n": "PROLOGO",
+    "nv": 3
+  },
+  {
+    "t": "EPÍLOGO",
+    "n": "EPILOGO",
+    "nv": 3
+  },
+  {
+    "t": "PERSONAGEM",
+    "n": "PERSONAGEM",
+    "nv": 2
+  },
+  {
+    "t": "NARRADOR",
+    "n": "NARRADOR",
+    "nv": 2
+  },
+  {
+    "t": "AUTOR",
+    "n": "AUTOR",
+    "nv": 2
+  },
+  {
+    "t": "LEITOR",
+    "n": "LEITOR",
+    "nv": 2
+  },
+  {
+    "t": "EDIÇÃO",
+    "n": "EDICAO",
+    "nv": 2
+  },
+  {
+    "t": "VOLUME",
+    "n": "VOLUME",
+    "nv": 2
+  },
+  {
+    "t": "LIVRO",
+    "n": "LIVRO",
+    "nv": 1
+  },
+  {
+    "t": "LIVRE",
+    "n": "LIVRE",
+    "nv": 2
+  },
+  {
+    "t": "OBRA",
+    "n": "OBRA",
+    "nv": 2
+  },
+  {
+    "t": "ANTOLOGIA",
+    "n": "ANTOLOGIA",
+    "nv": 3
+  },
+  {
+    "t": "BIOGRAFIA",
+    "n": "BIOGRAFIA",
+    "nv": 2
+  },
+  {
+    "t": "FICÇÃO",
+    "n": "FICCAO",
+    "nv": 2
+  },
+  {
+    "t": "DRAMA",
+    "n": "DRAMA",
+    "nv": 2
+  },
+  {
+    "t": "COMÉDIA",
+    "n": "COMEDIA",
+    "nv": 2
+  },
+  {
+    "t": "PROSA",
+    "n": "PROSA",
+    "nv": 2
+  },
+  {
+    "t": "LÍRICA",
+    "n": "LIRICA",
+    "nv": 3
+  },
+  {
+    "t": "FÁBULA",
+    "n": "FABULA",
+    "nv": 2
+  }
+]

@@ -1,0 +1,362 @@
+/* src/styles.css */
+/* Linguagem visual e paleta inegociáveis para o Caça-Palavras (§9) */
+
+:root {
+  --bg-tela: #efe9dd;
+  --bg-tabuleiro: #fdfcf7;
+  --cor-tinta: #16181c;
+  --cor-tema: #7a736a;
+  --cor-encontrada-lista: #9a948a;
+  --cor-botao-bg: #14181a;
+  --cor-botao-texto: #fdfcf7;
+  --cor-canto: #8e877c;
+  --cor-selecao: #ffd23f; /* Dourado */
+  --cor-real-ambar: #ffc107;
+  --cor-erro-cinza: #d0cbc3;
+
+  /* Ciclo de cores das palavras encontradas (§9.4) */
+  --cor-ciclo-0: #a8e6a3; /* Verde */
+  --cor-ciclo-1: #a9d4f5; /* Azul */
+  --cor-ciclo-2: #ffd9a0; /* Âmbar */
+  --cor-ciclo-3: #d8c0f0; /* Violeta */
+  --cor-ciclo-4: #f5b9a8; /* Terracota */
+
+  --raio-tabuleiro: 16px;
+  --raio-botao: 16px;
+  --fonte-principal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'LetrasHumanistas';
+  src: url('/fontes/letras.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-tela);
+  color: var(--cor-tinta);
+  font-family: 'LetrasHumanistas', var(--fonte-principal);
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: env(safe-area-inset-top, 12px) 16px calc(env(safe-area-inset-bottom, 12px) + 16px) 16px;
+}
+
+/* 1. Barra Superior (Sair e Engrenagem) (§5.4) */
+.barra-topo {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.btn-topo {
+  background: transparent;
+  border: none;
+  color: var(--cor-canto);
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 700;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+}
+
+.btn-topo svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+/* 2. Área do Tabuleiro / Grade */
+.container-grade {
+  position: relative;
+  background-color: var(--bg-tabuleiro);
+  border-radius: var(--raio-tabuleiro);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  display: grid;
+  padding: 8px;
+  touch-action: none;
+}
+
+/* Camada SVG para desenho de cápsulas de seleção e palavras encontradas */
+.camada-capsulas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1; /* Atrás das letras (§3.3, item 6) */
+}
+
+/* Células de letras */
+.celula-letra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--cor-tinta);
+  font-weight: 700;
+  z-index: 2; /* Fica acima das cápsulas para contraste máximo 18:1 */
+  pointer-events: none;
+  line-height: 1;
+  position: relative;
+}
+
+/* Marca persistente de dica na primeira letra (§8) */
+.celula-letra.dica-marcada::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d4a017;
+}
+
+/* 3. Rótulo de Tema */
+.rotulo-tema {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cor-tema);
+  font-weight: 700;
+  text-align: center;
+  margin: 4px 0;
+}
+
+/* 4. Lista de Palavras (2 Colunas, sem rolagem §5.3) */
+.container-lista {
+  width: 100%;
+  max-width: 440px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  align-content: center;
+}
+
+.item-palavra {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  color: var(--cor-tinta);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.item-palavra.marcada {
+  background-color: rgba(255, 210, 63, 0.4);
+  box-shadow: 0 0 0 2px var(--cor-selecao);
+}
+
+.item-palavra.encontrada {
+  color: var(--cor-encontrada-lista);
+  text-decoration: line-through;
+  text-decoration-thickness: 2.5px;
+  cursor: default;
+}
+
+/* 5. Barra Inferior de Botões (>= 64px de altura §5.4) */
+.barra-botoes {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn-grande {
+  flex: 1;
+  min-height: 64px;
+  height: 68px;
+  background-color: var(--cor-botao-bg);
+  color: var(--cor-botao-texto);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--raio-botao);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.btn-grande:active {
+  transform: scale(0.98);
+}
+
+.btn-grande svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* 6. Diálogos com Duas Saídas por Extenso (§1.1, item 8, §5.4) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 24, 28, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 100;
+  backdrop-filter: blur(3px);
+}
+
+.modal-dialogo {
+  background-color: var(--bg-tabuleiro);
+  border-radius: 20px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-dialogo h2 {
+  font-size: 22px;
+  color: var(--cor-tinta);
+}
+
+.modal-dialogo p {
+  font-size: 18px;
+  color: #4a453e;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.botoes-dialogo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-dialogo {
+  min-height: 64px;
+  border-radius: var(--raio-botao);
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-dialogo.seguro {
+  background-color: #2e7d32; /* Verde destacado primeiro (§1.1, item 8) */
+  color: #ffffff;
+}
+
+.btn-dialogo.secundario {
+  background-color: #e4decb;
+  color: var(--cor-tinta);
+}
+
+/* Animações e Efeitos */
+@keyframes balancoErro {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.anim-erro {
+  animation: balancoErro 0.2s ease-in-out;
+}
+
+@keyframes pulsoDica {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.15); filter: brightness(1.2); }
+}
+
+.anim-dica {
+  animation: pulsoDica 0.6s ease-in-out 3;
+}
+
+/* Comemoração de Vitória (§9.7) */
+.modal-vitoria {
+  background: var(--bg-tabuleiro);
+  border-radius: 24px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-vitoria {
+  font-size: 32px;
+  color: #1b5e20;
+}
+
+.mensagem-vitoria {
+  font-size: 20px;
+  color: var(--cor-tema);
+}
+
+.btn-jogar-outra {
+  width: 100%;
+  min-height: 72px;
+  background-color: #1b5e20;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--raio-botao);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(27, 94, 32, 0.3);
+}
+
+/* Acessibilidade para Movimento Reduzido (§9.6) */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
